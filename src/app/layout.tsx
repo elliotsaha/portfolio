@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Navbar } from "@/components/Navbar";
+import { Navbar, ThemeProvider } from "@/components";
 
 export const metadata: Metadata = {
   title: "Elliot's Portfolio",

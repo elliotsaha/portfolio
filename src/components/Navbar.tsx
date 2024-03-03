@@ -1,82 +1,84 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Box, Flex, SimpleGrid, Text, Button, Link } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import {
+  Box,
+  SimpleGrid,
+  Text,
+  Link,
+  Button,
+  IconButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { Nav, CenterSection, FlexSection, Section } from "@/components/factory";
+import { FiMenu } from "react-icons/fi";
 
-interface NavbarLinkProps {
-  reqURI: string;
-  href: string;
-  children: string;
-}
-
-const NavbarLink = ({ reqURI, href, children }: NavbarLinkProps) => {
-  const matchURI = reqURI === href;
+const Links = () => {
+  const labels = ["home", "about", "work", "blog"];
   return (
-    <Flex position="relative">
-      <Link href={href} fontWeight={matchURI ? "bold" : "400"}>
-        {children}
-      </Link>
-      {matchURI && (
-        <Box
-          position="absolute"
-          w="3"
-          h="0.5"
-          bg="gray.100"
-          bottom="-1"
-          left="0"
-          right="0"
-          mx="auto"
-          borderRadius="sm"
-        />
-      )}
-    </Flex>
+    <>
+      {labels.map((label: string) => (
+        <Link href={`/${label}`} fontSize={{ sm: "md", lg: "lg" }} key={label}>
+          {label}
+        </Link>
+      ))}
+    </>
   );
 };
 
 export const Navbar = () => {
-  const pathname = usePathname();
-  const rootPath = `/${pathname.split("/")[1]}`;
+  const { getButtonProps, getDisclosureProps } = useDisclosure();
+
+  const buttonProps = getButtonProps();
+  const disclosureProps = getDisclosureProps();
 
   return (
-    <Flex
-      position="fixed"
-      zIndex={1000}
-      w="100%"
-      justifyContent="center"
-      alignItems="center"
-      my="4"
-    >
+    <Nav display="block" zIndex="banner">
       <SimpleGrid
-        columns={3}
-        bg="rgba(255,255,255,0.001)"
-        backdropFilter="blur(12px)"
-        borderRadius="24"
-        py="2"
-        px="4"
-        alignItems="center"
-        shadow="lg"
+        templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
+        px={{ base: "8", md: "24" }}
+        py="4"
       >
-        <Flex>
-          <Text color="gray.100" fontWeight="bold">
-            Elliot Saha
+        <FlexSection
+          alignItems="center"
+          display={{ base: "flex", sm: "none", md: "flex" }}
+        >
+          <Text variant="active" fontSize={{ base: "lg", sm: "md", lg: "lg" }}>
+            elliot saha.
           </Text>
-        </Flex>
-        <Flex gap="8">
-          <NavbarLink href="/" reqURI={rootPath}>
-            Home
-          </NavbarLink>
-          <NavbarLink href="/about" reqURI={rootPath}>
-            About
-          </NavbarLink>
-          <NavbarLink href="/projects" reqURI={rootPath}>
-            Projects
-          </NavbarLink>
-        </Flex>
-        <Flex justifyContent="flex-end">
-          <Button size="sm">Contact</Button>
-        </Flex>
+        </FlexSection>
+        <CenterSection gap="10" display={{ base: "none", sm: "flex" }}>
+          <Links />
+        </CenterSection>
+        <FlexSection
+          alignItems="center"
+          justifyContent="flex-end"
+          display={{ base: "none", sm: "flex" }}
+        >
+          <Button as={Link} size={{ base: "md", lg: "lg" }} href="/contact">
+            contact
+          </Button>
+        </FlexSection>
+        <FlexSection
+          display={{ base: "flex", sm: "none" }}
+          justifyContent="flex-end"
+        >
+          <IconButton
+            aria-label="Open menu"
+            icon={<FiMenu />}
+            {...buttonProps}
+          />
+        </FlexSection>
       </SimpleGrid>
-    </Flex>
+      <FlexSection
+        {...disclosureProps}
+        display={{ base: "flex", sm: "none" }}
+        px="8"
+        flexDir="column"
+        gap="4"
+        fontSize="lg"
+      >
+        <Links />
+        <Link href="/contact">contact</Link>
+      </FlexSection>
+    </Nav>
   );
 };

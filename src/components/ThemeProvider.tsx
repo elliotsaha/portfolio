@@ -14,30 +14,81 @@ const theme = extendTheme({
     body: spaceGrotesk.style.fontFamily,
   },
   colors: {
-    background: "#060606",
-  },
-  components: {
-    Heading: {
-      baseStyle: {
-        color: "gray.100",
+    background: "#FEFBF5",
+    mono: {
+      black: {
+        100: "##4c4c4c",
+        500: "#1F1F1F",
+        900: "#090909",
+      },
+      gray: {
+        100: "##7e7e7e",
+        500: "#5E5E5E",
+        900: "##424242",
+      },
+      white: "rgba(255, 255, 255, 85%)",
+    },
+    brand: {
+      green: {
+        solid: "#90E899",
+        blur: "#A7EDAE",
+      },
+      blue: {
+        solid: "#5EBBFF",
+        blur: "#A1D8FF",
+      },
+      purple: {
+        solid: "#CE9DF4",
+        blur: "#E5D1F5",
+      },
+      yellow: {
+        solid: "#FFD874",
+        blur: "#EBD8A7",
       },
     },
+  },
+  components: {
     Text: {
-      baseStyle: {
-        color: "gray.500",
-        fontWeight: "medium",
+      variants: {
+        description: {
+          color: "mono.gray.500",
+          fontWeight: "medium",
+        },
+        active: {
+          color: "mono.black.500",
+          fontWeight: "bold",
+        },
+      },
+      defaultProps: {
+        variant: "description",
       },
     },
     Button: {
       baseStyle: {
         borderRadius: "24",
+        _hover: {
+          color: "mono.white",
+        },
+      },
+      defaultProps: {
+        colorScheme: "mono.black",
+      },
+    },
+    Flex: {
+      variants: {
+        center: {
+          justifyContent: "center",
+          alignItems: "center",
+        },
       },
     },
     Link: {
       baseStyle: {
-        color: "gray.100",
+        color: "mono.gray.500",
+        fontWeight: "medium",
         _hover: {
           textDecoration: "none",
+          color: "mono.gray.900",
         },
       },
     },
