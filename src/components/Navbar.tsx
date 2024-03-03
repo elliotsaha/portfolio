@@ -1,23 +1,43 @@
 "use client";
+import { useState, useEffect } from "react";
 import {
-  Box,
+  Container,
   SimpleGrid,
   Text,
   Link,
   Button,
   IconButton,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalCloseButton,
+  ModalBody,
+  ModalContent,
+  useBreakpoint,
 } from "@chakra-ui/react";
-import { Nav, CenterSection, FlexSection, Section } from "@/components/factory";
+import { Nav, CenterSection, FlexSection } from "@/components/factory";
 import { FiMenu } from "react-icons/fi";
 
 const Links = () => {
-  const labels = ["home", "about", "work", "blog"];
+  type Navlink = { label: string; href: string };
+
+  const navLinks = [
+    { label: "home", href: "/" },
+    { label: "about", href: "/about" },
+    { label: "work", href: "/work" },
+    { label: "blog", href: "/blog" },
+  ];
+
   return (
     <>
-      {labels.map((label: string) => (
-        <Link href={`/${label}`} fontSize={{ sm: "md", lg: "lg" }} key={label}>
-          {label}
+      {navLinks.map((link: Navlink) => (
+        <Link
+          href={link.href}
+          fontSize={{ sm: "md", lg: "lg" }}
+          color={{ base: "white", sm: "mono.gray.500" }}
+          key={link.href}
+        >
+          {link.label}
         </Link>
       ))}
     </>
@@ -25,60 +45,110 @@ const Links = () => {
 };
 
 export const Navbar = () => {
-  const { getButtonProps, getDisclosureProps } = useDisclosure();
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const buttonProps = getButtonProps();
-  const disclosureProps = getDisclosureProps();
+  const breakpoint = useBreakpoint();
 
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen && breakpoint !== "base") {
+      onClose();
+    }
+  }, [breakpoint, isOpen, onClose]);
+
+  const scrollCssProps = {
+    bg: "background",
+    px: "6",
+    mt: "4",
+    borderRadius: "full",
+    boxShadow: "lg",
+  };
+
+  console.log(breakpoint);
   return (
-    <Nav display="block" zIndex="banner">
-      <SimpleGrid
-        templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
-        px={{ base: "8", md: "24" }}
-        py="4"
-      >
-        <FlexSection
-          alignItems="center"
-          display={{ base: "flex", sm: "none", md: "flex" }}
+    <Nav display="block" zIndex="banner" position="fixed" w="100%">
+      <Container maxW="container.xl">
+        <SimpleGrid
+          templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
+          py="4"
+          transition="all 0.25s ease-in-out"
+          sx={scrollPosition > 30 ? scrollCssProps : {}}
         >
-          <Text variant="active" fontSize={{ base: "lg", sm: "md", lg: "lg" }}>
-            elliot saha.
-          </Text>
-        </FlexSection>
-        <CenterSection gap="10" display={{ base: "none", sm: "flex" }}>
-          <Links />
-        </CenterSection>
-        <FlexSection
-          alignItems="center"
-          justifyContent="flex-end"
-          display={{ base: "none", sm: "flex" }}
+          <FlexSection
+            alignItems="center"
+            display={{ base: "flex", sm: "none", md: "flex" }}
+          >
+            <Text
+              variant="active"
+              fontSize={{ base: "lg", sm: "md", lg: "lg" }}
+            >
+              elliot saha.
+            </Text>
+          </FlexSection>
+          <CenterSection
+            gap="10"
+            display={{ base: "none", sm: "flex" }}
+            justifyContent={{ sm: "flex-start", md: "center" }}
+          >
+            <Links />
+          </CenterSection>{" "}
+          <FlexSection
+            alignItems="center"
+            justifyContent="flex-end"
+            display={{ base: "none", sm: "flex" }}
+          >
+            <Button as={Link} size={{ base: "md", lg: "lg" }} href="/contact">
+              contact
+            </Button>
+          </FlexSection>
+          <FlexSection
+            display={{ base: "flex", sm: "none" }}
+            justifyContent="flex-end"
+          >
+            <IconButton
+              aria-label="Open menu"
+              icon={<FiMenu />}
+              onClick={onOpen}
+            />
+          </FlexSection>
+        </SimpleGrid>
+        <Modal
+          onClose={onClose}
+          isOpen={isOpen}
+          motionPreset="slideInBottom"
+          isCentered
+          blockScrollOnMount={true}
         >
-          <Button as={Link} size={{ base: "md", lg: "lg" }} href="/contact">
-            contact
-          </Button>
-        </FlexSection>
-        <FlexSection
-          display={{ base: "flex", sm: "none" }}
-          justifyContent="flex-end"
-        >
-          <IconButton
-            aria-label="Open menu"
-            icon={<FiMenu />}
-            {...buttonProps}
-          />
-        </FlexSection>
-      </SimpleGrid>
-      <FlexSection
-        {...disclosureProps}
-        display={{ base: "flex", sm: "none" }}
-        px="8"
-        flexDir="column"
-        gap="4"
-        fontSize="lg"
-      >
-        <Links />
-        <Link href="/contact">contact</Link>
-      </FlexSection>
+          <ModalOverlay backdropFilter="auto" backdropBlur="30px" />
+          <ModalContent bg="transparent" boxShadow="none" color="white" mx="8">
+            <ModalCloseButton size="lg" />
+            <ModalBody>
+              <FlexSection flexDir="column" gap="4" fontSize="2xl">
+                <Links />
+                <Link
+                  href="/contact"
+                  color={{ base: "white", sm: "mono.gray.500" }}
+                >
+                  contact
+                </Link>
+              </FlexSection>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </Container>
     </Nav>
   );
 };

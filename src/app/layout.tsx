@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar, ThemeProvider } from "@/components";
+import { Body } from "@/components/factory";
 
 export const metadata: Metadata = {
   title: "Elliot's Portfolio",
@@ -13,12 +14,12 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body>
+      <Body>
         <ThemeProvider>
           <Navbar />
           {children}
         </ThemeProvider>
-      </body>
+      </Body>
     </html>
   );
 };

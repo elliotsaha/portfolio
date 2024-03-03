@@ -48,11 +48,24 @@ const theme = extendTheme({
     },
   },
   components: {
+    Container: {
+      baseStyle: {
+        px: { base: "4", sm: "8" },
+      },
+    },
+    Heading: {
+      baseStyle: {
+        fontWeight: "normal",
+      },
+    },
     Text: {
       variants: {
         description: {
           color: "mono.gray.500",
-          fontWeight: "medium",
+          fontWeight: "regular",
+          sm: {
+            color: "red",
+          },
         },
         active: {
           color: "mono.black.500",
