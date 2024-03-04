@@ -42,7 +42,7 @@ const theme = extendTheme({
         blur: "#E5D1F5",
       },
       yellow: {
-        solid: "#FFD874",
+        solid: "#FFD770",
         blur: "#EBD8A7",
       },
     },

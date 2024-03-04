@@ -27,12 +27,12 @@ import { gsap } from "gsap";
 
 interface CardProps {
   title: string;
-  body: string;
+  children: string;
   icon: IconType;
   color: string;
 }
 
-const Card = ({ title, body, icon, color }: CardProps) => {
+const Card = ({ title, children, icon, color }: CardProps) => {
   return (
     <Flex
       bg="background"
@@ -42,10 +42,10 @@ const Card = ({ title, body, icon, color }: CardProps) => {
       boxShadow="lg"
     >
       <Icon as={icon} color={color} fontSize="36" mb="4" />
-      <Heading mb="2" size="lg">
+      <Heading mb="2" size="lg" as="h3">
         {title}
       </Heading>
-      <Text>{body}</Text>
+      <Text>{children}</Text>
     </Flex>
   );
 };
@@ -55,16 +55,18 @@ const Home = () => {
 
   useGSAP(
     () => {
+      gsap.set(".animate-header-line-1", { visibility: "visible" });
+      gsap.set(".animate-header-line-2", { visibility: "visible" });
       gsap.from(".animate-header-line-1", {
-        y: 100,
+        y: 150,
         stagger: {
-          each: 0.015,
+          each: 0.005,
         },
       });
       gsap.from(".animate-header-line-2", {
-        y: 100,
+        y: 150,
         stagger: {
-          each: 0.03,
+          each: 0.01,
         },
       });
     },
@@ -98,36 +100,45 @@ const Home = () => {
           top="42"
           right="0"
         />
-        <Flex h="100vh" alignItems="center">
-          <FlexSection flexDir="column" gap="4">
-            <Flex mb={{ base: "-2", md: "-4" }} alignItems="center" gap="1">
-              <Icon as={FiMapPin} color="mono.gray.500" />
-              <Text>Vancouver, BC</Text>
-            </Flex>
-            <Flex flexDir="column" gap="0">
-              <HiddenHeading>
-                Designer by day, Developer by night.
-              </HiddenHeading>
-              <BrandHeading overflow="hidden">
-                <SplitText className="animate-header-line-1">
-                  Designer by day,
-                </SplitText>
-                <br />
-                <SplitText className="animate-header-line-2">
-                  Developer by night
-                </SplitText>
-              </BrandHeading>
-            </Flex>
-            <Text maxW="2xl" fontSize={{ md: "lg" }}>
-              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-              ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-            </Text>
-            <Box mt="2">
-              <ButtonLink href="/contact">get in touch</ButtonLink>
-            </Box>
-          </FlexSection>
-        </Flex>
+        <main>
+          <Flex h="100vh" alignItems="center">
+            <FlexSection flexDir="column" gap="4">
+              <Flex mb={{ base: "-2", md: "-4" }} alignItems="center" gap="1">
+                <Icon as={FiMapPin} color="mono.gray.500" />
+                <Text>Vancouver, BC</Text>
+              </Flex>
+              <Flex flexDir="column" gap="0">
+                <HiddenHeading>
+                  Designer by day, Developer by night.
+                </HiddenHeading>
+                <BrandHeading overflow="hidden">
+                  <SplitText
+                    className="animate-header-line-1"
+                    visibility="hidden"
+                  >
+                    Designer by day,
+                  </SplitText>
+                  <br />
+                  <SplitText
+                    className="animate-header-line-2"
+                    visibility="hidden"
+                  >
+                    Developer by night.
+                  </SplitText>
+                </BrandHeading>
+              </Flex>
+              <Text maxW="2xl" fontSize={{ base: "md", md: "lg" }}>
+                Lorem ipsum dolor sit amet, officia excepteur ex fugiat
+                reprehenderit enim labore culpa sint ad nisi Lorem pariatur
+                mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
+                officia.
+              </Text>
+              <Box mt="2">
+                <ButtonLink href="/contact">get in touch</ButtonLink>
+              </Box>
+            </FlexSection>
+          </Flex>
+        </main>
       </Section>
 
       <FlexSection
@@ -137,22 +148,28 @@ const Home = () => {
       >
         <Card
           title="Lorem ipsum dolor sit amet."
-          body="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
           icon={FiBox}
           color="brand.blue.solid"
-        />
+        >
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </Card>
         <Card
           title="Lorem ipsum dolor sit amet."
-          body="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
           icon={FiTable}
           color="brand.green.solid"
-        />
+        >
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </Card>
         <Card
           title="Lorem ipsum dolor sit amet."
-          body="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
           icon={FiLayers}
           color="brand.yellow.solid"
-        />
+        >
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </Card>
       </FlexSection>
 
       <FlexSection mt="32" flexDir="column" position="relative">
@@ -360,7 +377,7 @@ const Home = () => {
       <Section my="32" position="relative">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="10">
           <Img
-            src="/about/headshot.jpeg"
+            src="/about/headshot-black.jpeg"
             borderRadius="3xl"
             h={{ base: "sm", sm: "lg", md: "xl" }}
             objectFit="cover"
