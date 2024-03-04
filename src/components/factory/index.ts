@@ -29,3 +29,11 @@ export const BrandHeading = chakra("h1", {
     lineHeight: "1.2",
   },
 });
+
+// useful for displaying text simply for SEO purposes
+export const HiddenHeading = chakra("h1", {
+  baseStyle: {
+    fontSize: "0",
+    visibility: "hidden",
+  },
+});

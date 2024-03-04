@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import {
   GridItem,
   Heading,
@@ -13,10 +13,17 @@ import {
   Img,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { FlexSection, Section, BrandHeading } from "@/components/factory";
-import { Blob, ButtonLink } from "@/components";
+import {
+  FlexSection,
+  Section,
+  BrandHeading,
+  HiddenHeading,
+} from "@/components/factory";
+import { Blob, ButtonLink, SplitText } from "@/components";
 import { FiBox, FiTable, FiLayers, FiMapPin } from "react-icons/fi";
 import { IconType } from "react-icons";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 
 interface CardProps {
   title: string;
@@ -42,9 +49,30 @@ const Card = ({ title, body, icon, color }: CardProps) => {
     </Flex>
   );
 };
+
 const Home = () => {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".animate-header-line-1", {
+        y: 100,
+        stagger: {
+          each: 0.015,
+        },
+      });
+      gsap.from(".animate-header-line-2", {
+        y: 100,
+        stagger: {
+          each: 0.03,
+        },
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.xl" ref={container}>
       <Section position="relative">
         {/* background blur */}
         <Blob
@@ -76,10 +104,20 @@ const Home = () => {
               <Icon as={FiMapPin} color="mono.gray.500" />
               <Text>Vancouver, BC</Text>
             </Flex>
-            <BrandHeading>
-              Designer by day, <br />
-              Developer by night.
-            </BrandHeading>
+            <Flex flexDir="column" gap="0">
+              <HiddenHeading>
+                Designer by day, Developer by night.
+              </HiddenHeading>
+              <BrandHeading overflow="hidden">
+                <SplitText className="animate-header-line-1">
+                  Designer by day,
+                </SplitText>
+                <br />
+                <SplitText className="animate-header-line-2">
+                  Developer by night
+                </SplitText>
+              </BrandHeading>
+            </Flex>
             <Text maxW="2xl" fontSize={{ md: "lg" }}>
               Lorem ipsum dolor sit amet, officia excepteur ex fugiat
               reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
