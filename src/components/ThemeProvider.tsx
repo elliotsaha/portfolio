@@ -30,7 +30,7 @@ const theme = extendTheme({
     },
     brand: {
       green: {
-        solid: "#90E899",
+        solid: "#70CA79",
         blur: "#A7EDAE",
       },
       blue: {
@@ -63,9 +63,6 @@ const theme = extendTheme({
         description: {
           color: "mono.gray.500",
           fontWeight: "regular",
-          sm: {
-            color: "red",
-          },
         },
         active: {
           color: "mono.black.500",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Navbar, ThemeProvider } from "@/components";
+import { Navbar, ThemeProvider, Footer } from "@/components";
 import { Body } from "@/components/factory";
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ const RootLayout = ({
         <ThemeProvider>
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </Body>
     </html>

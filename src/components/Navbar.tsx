@@ -56,6 +56,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
@@ -77,7 +78,6 @@ export const Navbar = () => {
     boxShadow: "lg",
   };
 
-  console.log(breakpoint);
   return (
     <Nav display="block" zIndex="banner" position="fixed" w="100%">
       <Container maxW="container.xl">
