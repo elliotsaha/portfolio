@@ -17,14 +17,14 @@ const theme = extendTheme({
     background: "#FEFBF5",
     mono: {
       black: {
-        100: "##4c4c4c",
+        100: "#4c4c4c",
         500: "#1F1F1F",
         900: "#090909",
       },
       gray: {
-        100: "##7e7e7e",
+        100: "#D4D4D4",
         500: "#5E5E5E",
-        900: "##424242",
+        900: "#424242",
       },
       white: "rgba(255, 255, 255, 85%)",
     },
@@ -99,6 +99,33 @@ const theme = extendTheme({
         _hover: {
           textDecoration: "none",
           color: "mono.gray.900",
+        },
+      },
+    },
+    Input: {
+      variants: {
+        outline: {
+          field: {
+            borderColor: "mono.gray.100",
+            borderWidth: "1.5px",
+            _hover: {
+              borderColor: "mono.gray.100",
+            },
+          },
+        },
+      },
+    },
+    Textarea: {
+      variants: {
+        outline: {
+          px: "4",
+          py: "3",
+          borderColor: "mono.gray.100",
+          borderWidth: "1.5px",
+          borderRadius: "3xl",
+          _hover: {
+            borderColor: "mono.gray.100",
+          },
         },
       },
     },

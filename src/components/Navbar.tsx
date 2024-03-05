@@ -25,7 +25,6 @@ const Links = () => {
     { label: "home", href: "/" },
     { label: "about", href: "/about" },
     { label: "work", href: "/work" },
-    { label: "blog", href: "/blog" },
   ];
 
   return (

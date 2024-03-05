@@ -78,7 +78,7 @@ const About = () => {
           left="96"
         />
         <main>
-          <Flex alignItems="center" pt="48" minH="90vh">
+          <Flex alignItems="center" pt={{ base: "48", md: "42" }} minH="90vh">
             <FlexSection flexDir="column" gap="4">
               <SimpleGrid
                 columns={{ base: 1, md: 2 }}
