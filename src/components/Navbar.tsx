@@ -34,6 +34,9 @@ const Links = () => {
           href={link.href}
           fontSize={{ sm: "md", lg: "lg" }}
           color={{ base: "white", sm: "mono.gray.500" }}
+          _hover={{
+            color: { base: "mono.gray.100", sm: "mono.gray.500" },
+          }}
           key={link.href}
         >
           {link.label}
@@ -140,6 +143,9 @@ export const Navbar = () => {
                 <Link
                   href="/contact"
                   color={{ base: "white", sm: "mono.gray.500" }}
+                  _hover={{
+                    color: { base: "mono.gray.100", sm: "mono.gray.500" },
+                  }}
                 >
                   contact
                 </Link>
