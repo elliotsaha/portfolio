@@ -2,6 +2,7 @@
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Space_Grotesk } from "next/font/google";
+import { Toast } from "@/components";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -135,5 +136,12 @@ const theme = extendTheme({
 export const ThemeProvider = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+  return (
+    <ChakraProvider
+      theme={theme}
+      toastOptions={{ defaultOptions: { render: Toast } }}
+    >
+      {children}
+    </ChakraProvider>
+  );
 };

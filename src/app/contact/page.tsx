@@ -1,11 +1,12 @@
 "use client";
 import React, { useRef } from "react";
 import {
+  useToast,
   Icon,
   Flex,
   Input,
   Box,
-  InputGroup,
+  FormErrorMessage,
   FormErrorIcon,
   FormLabel,
   FormControl,
@@ -17,7 +18,6 @@ import {
   Heading,
   GridItem,
   Textarea,
-  InputLeftElement,
 } from "@chakra-ui/react";
 import {
   BrandHeading,
@@ -29,8 +29,17 @@ import { Blob, SplitText } from "@/components";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { FiMail } from "react-icons/fi";
+import { contactSchema, ContactSchema } from "@/forms";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Contact = () => {
+  const statusToast = useToast({
+    containerStyle: {
+      borderRadius: "full",
+    },
+  });
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -45,6 +54,50 @@ const Contact = () => {
     },
     { scope: container },
   );
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactSchema>({ resolver: zodResolver(contactSchema) });
+
+  console.log(errors);
+
+  const onSubmit = async ({
+    first_name,
+    last_name,
+    email_address,
+    message,
+  }: ContactSchema) => {
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_HOSTNAME}/api/contact`,
+        {
+          first_name,
+          last_name,
+          email_address,
+          message,
+        },
+      );
+
+      if (res.data) {
+        reset();
+        statusToast({
+          title: res.data.message,
+          status: "success",
+        });
+      }
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        statusToast({
+          title: "An unexpected error has occurred",
+          status: "error",
+        });
+      }
+    }
+  };
+
   return (
     <Container maxW="container.xl" ref={container}>
       <Section position="relative">
@@ -73,10 +126,10 @@ const Contact = () => {
         />
       </Section>
       <main>
-        <Flex alignItems="center" py={{ base: "48", lg: "42" }} minH="90vh">
+        <Flex alignItems="center" py={{ base: "48", lg: "58" }} minH="100vh">
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
-            gap={{ base: "8", lg: "12" }}
+            gap={{ base: "8", md: "10", lg: "12" }}
           >
             <Flex flexDir="column" gap="2" justifyContent="center">
               <HiddenHeading>Contact me</HiddenHeading>
@@ -105,60 +158,96 @@ const Contact = () => {
               boxShadow="lg"
               p={{ base: "8", lg: "12" }}
               flexDir="column"
-              w={{ base: "100%", lg: "lg" }}
+              w={{ base: "100%", xl: "lg" }}
             >
               <Heading as="h2" size="lg" mb="4">
                 Get in touch
               </Heading>
-              <Grid
-                gap="4"
-                templateColumns={{ base: "1fr", md: "1fr 1fr" }}
-                templateAreas={{
-                  base: `"first-name" 
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid
+                  gap="4"
+                  templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+                  templateAreas={{
+                    base: `"first-name" 
                          "last-name" 
                          "email-address" 
                          "message"`,
-                  md: `"first-name last-name" 
+                    md: `"first-name last-name" 
                        "email-address email-address" 
                        "message message"`,
-                }}
-              >
-                <GridItem area="first-name">
-                  <Input
-                    borderRadius="full"
+                  }}
+                >
+                  <GridItem area="first-name">
+                    <FormControl isInvalid={Boolean(errors.first_name)}>
+                      <Input
+                        borderRadius="full"
+                        size="lg"
+                        placeholder="First Name"
+                        isDisabled={isSubmitting}
+                        {...register("first_name")}
+                      />
+                      <FormErrorMessage ml="4">
+                        {errors?.first_name?.message}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </GridItem>
+                  <GridItem area="last-name">
+                    <FormControl isInvalid={Boolean(errors.last_name)}>
+                      <Input
+                        borderRadius="full"
+                        size="lg"
+                        placeholder="Last Name"
+                        isDisabled={isSubmitting}
+                        {...register("last_name")}
+                      />
+                      <FormErrorMessage ml="4">
+                        {errors?.last_name?.message}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </GridItem>
+                  <GridItem area="email-address">
+                    <FormControl isInvalid={Boolean(errors.email_address)}>
+                      <Input
+                        borderRadius="full"
+                        placeholder="Email Address"
+                        size="lg"
+                        type="email"
+                        isDisabled={isSubmitting}
+                        {...register("email_address")}
+                      />
+                      <FormErrorMessage ml="4">
+                        {errors?.email_address?.message}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </GridItem>
+                  <GridItem area="message">
+                    <FormControl isInvalid={Boolean(errors.message)}>
+                      <Textarea
+                        size="lg"
+                        placeholder="Message"
+                        resize="none"
+                        rows={5}
+                        isDisabled={isSubmitting}
+                        {...register("message")}
+                      />
+                      <FormErrorMessage ml="4">
+                        {errors?.message?.message}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </GridItem>
+                </Grid>
+                <Box>
+                  <Button
                     size="lg"
-                    placeholder="First Name"
-                  />
-                </GridItem>
-                <GridItem area="last-name">
-                  <Input
-                    borderRadius="full"
-                    size="lg"
-                    placeholder="Last Name"
-                  />
-                </GridItem>
-                <GridItem area="email-address">
-                  <Input
-                    borderRadius="full"
-                    placeholder="Email Address"
-                    size="lg"
-                    type="email"
-                  />
-                </GridItem>
-                <GridItem area="message">
-                  <Textarea
-                    size="lg"
-                    placeholder="Message"
-                    resize="none"
-                    rows={5}
-                  />
-                </GridItem>
-              </Grid>
-              <Box>
-                <Button size="lg" mt="4">
-                  send message
-                </Button>
-              </Box>
+                    mt="4"
+                    type="submit"
+                    isLoading={isSubmitting}
+                    spinnerPlacement="end"
+                  >
+                    send message
+                  </Button>
+                </Box>
+              </form>
             </Flex>
           </SimpleGrid>
         </Flex>
