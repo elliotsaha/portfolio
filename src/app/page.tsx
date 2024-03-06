@@ -1,5 +1,5 @@
-"use client";
-import React, { useRef } from "react";
+'use client';
+import React, {useRef} from 'react';
 import {
   GridItem,
   Heading,
@@ -12,18 +12,22 @@ import {
   Grid,
   Img,
   SimpleGrid,
-} from "@chakra-ui/react";
+  Skeleton,
+} from '@chakra-ui/react';
 import {
   FlexSection,
   Section,
   BrandHeading,
   HiddenHeading,
-} from "@/components/factory";
-import { Blob, ButtonLink, SplitText } from "@/components";
-import { FiBox, FiTable, FiLayers, FiMapPin } from "react-icons/fi";
-import { IconType } from "react-icons";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
+} from '@/components/factory';
+import {Blob, ButtonLink, SplitText} from '@/components';
+import {FiBox, FiTable, FiLayers, FiMapPin} from 'react-icons/fi';
+import {IconType} from 'react-icons';
+import {useGSAP} from '@gsap/react';
+import {gsap} from 'gsap';
+import axios from 'axios';
+import {useQuery} from '@tanstack/react-query';
+import {CaseStudy} from '@/types';
 
 interface CardProps {
   title: string;
@@ -32,11 +36,11 @@ interface CardProps {
   color: string;
 }
 
-const Card = ({ title, children, icon, color }: CardProps) => {
+const Card = ({title, children, icon, color}: CardProps) => {
   return (
     <Flex
       bg="background"
-      p={{ base: "8", xl: "12" }}
+      p={{base: '8', xl: '12'}}
       borderRadius="3xl"
       flexDir="column"
       boxShadow="lg"
@@ -50,27 +54,46 @@ const Card = ({ title, children, icon, color }: CardProps) => {
   );
 };
 
+// get featured work
+const getFeatured = async () => {
+  const featured = await axios.get(
+    `${process.env.NEXT_PUBLIC_HOSTNAME}/api/work/featured`
+  );
+  return featured.data;
+};
+
 const Home = () => {
   const container = useRef<HTMLDivElement>(null);
 
+  const {isPending, error, data} = useQuery<{
+    showcase: CaseStudy;
+    featuredLeft: CaseStudy;
+    featuredRight: CaseStudy;
+  }>({
+    queryKey: ['featured-work'],
+    queryFn: getFeatured,
+  });
+
+  console.log(data);
+
   useGSAP(
     () => {
-      gsap.set(".animate-header-line-1", { visibility: "visible" });
-      gsap.set(".animate-header-line-2", { visibility: "visible" });
-      gsap.from(".animate-header-line-1", {
+      gsap.set('.animate-header-line-1', {visibility: 'visible'});
+      gsap.set('.animate-header-line-2', {visibility: 'visible'});
+      gsap.from('.animate-header-line-1', {
         y: 150,
         stagger: {
           each: 0.005,
         },
       });
-      gsap.from(".animate-header-line-2", {
+      gsap.from('.animate-header-line-2', {
         y: 150,
         stagger: {
-          each: 0.01,
+          each: 0.015,
         },
       });
     },
-    { scope: container },
+    {scope: container}
   );
 
   return (
@@ -103,7 +126,7 @@ const Home = () => {
         <main>
           <Flex h="100vh" alignItems="center">
             <FlexSection flexDir="column" gap="4">
-              <Flex mb={{ base: "-2", md: "-4" }} alignItems="center" gap="1">
+              <Flex mb={{base: '-2', md: '-4'}} alignItems="center" gap="1">
                 <Icon as={FiMapPin} color="mono.gray.500" />
                 <Text>Vancouver, BC</Text>
               </Flex>
@@ -127,7 +150,7 @@ const Home = () => {
                   </SplitText>
                 </BrandHeading>
               </Flex>
-              <Text maxW="2xl" fontSize={{ base: "md", md: "lg" }}>
+              <Text maxW="2xl" fontSize={{base: 'md', md: 'lg'}}>
                 Lorem ipsum dolor sit amet, officia excepteur ex fugiat
                 reprehenderit enim labore culpa sint ad nisi Lorem pariatur
                 mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
@@ -144,7 +167,7 @@ const Home = () => {
       <FlexSection
         position="relative"
         gap="8"
-        flexDir={{ base: "column", lg: "row" }}
+        flexDir={{base: 'column', lg: 'row'}}
       >
         <Card
           title="Lorem ipsum dolor sit amet."
@@ -215,6 +238,9 @@ const Home = () => {
         <BrandHeading as="h2" mb="8">
           featured works.
         </BrandHeading>
+        {error && (
+          <Text>An unexpected error occurred. Please try again later.</Text>
+        )}
         <Grid
           templateAreas={{
             base: `"showcase"
@@ -223,163 +249,174 @@ const Home = () => {
             lg: `"showcase showcase"
                 "small1 small2"`,
           }}
-          gridTemplateColumns={{ base: "100%", lg: "1fr 1fr" }}
+          gridTemplateColumns={{base: '100%', lg: '1fr 1fr'}}
           gap="8"
         >
           <GridItem
             area="showcase"
             as={Link}
-            href="/projects/deca-ui"
+            href={`/work/${data?.showcase?.slug}`}
             role="group"
           >
-            <SimpleGrid
-              columns={{ base: 1, lg: 2 }}
-              spacing="10"
-              bg="background"
-              boxShadow="lg"
-              borderRadius="3xl"
-              position="relative"
-              overflow="hidden"
-            >
-              <Flex flexDir="column" p={{ base: "8", xl: "16" }}>
-                <Img src="/projects/DecaUI/logo.svg" w="12" mb="4" />
-                <Heading size="xl">DecaUI</Heading>
-                <Text
-                  color="brand.blue.solid"
-                  textTransform="uppercase"
-                  letterSpacing="0.25rem"
-                  mb="2"
-                >
-                  Component Library
-                </Text>
-                <Text fontWeight="normal">
-                  Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                  reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                  mollit ex esse exercitation amet. Nisi anim cupidatat
-                  excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem
-                  est aliquip amet voluptate voluptate dolor minim nulla est
-                  proident. Nostrud officia pariatur ut officia.
-                </Text>
-              </Flex>
-              <Img
-                src="/projects/DecaUI/cover.png"
-                objectFit="cover"
-                mt="auto"
-                borderTopLeftRadius="3xl"
-                mb={{ base: "0rem", sm: "-4rem", lg: "-1rem" }}
-                ml={{ base: "1.8rem", sm: "4rem", lg: "1rem" }}
-                transition="all 0.25s ease-in-out"
-                boxShadow="lg"
+            {isPending && (
+              <Skeleton
+                w="100%"
+                h={{base: 'xl', lg: '96'}}
+                borderRadius="3xl"
               />
-            </SimpleGrid>
+            )}
+            {data && (
+              <SimpleGrid
+                columns={{base: 1, lg: 2}}
+                bg="background"
+                boxShadow="lg"
+                borderRadius="3xl"
+                position="relative"
+                overflow="hidden"
+              >
+                <Flex flexDir="column" p={{base: '8', lg: '12', xl: '16'}}>
+                  <Img src={data.showcase.icon} h="16" mb="4" mr="auto" />
+                  <Heading size="xl">{data.showcase.title}</Heading>
+                  <Text
+                    color="brand.blue.solid"
+                    transition="all 0.25s ease-in-out"
+                    _groupHover={{
+                      filter: 'brightness(75%)',
+                    }}
+                    textTransform="uppercase"
+                    letterSpacing="0.25rem"
+                    mb="2"
+                  >
+                    {data.showcase.subtitle}
+                  </Text>
+                  <Text fontWeight="normal">
+                    {data.showcase.shortDescription}
+                  </Text>
+                </Flex>
+                <Img
+                  src={data.showcase.cover}
+                  objectFit="cover"
+                  mt="auto"
+                  borderTopLeftRadius="3xl"
+                  mb={{base: '0rem', sm: '-4rem', lg: '-5rem', xl: '-4rem'}}
+                  ml={{base: '1.8rem', sm: '4rem'}}
+                  transition="all 0.25s ease-in-out"
+                  boxShadow="lg"
+                />
+              </SimpleGrid>
+            )}
           </GridItem>
           <GridItem
             area="small1"
             as={Link}
-            href="/projects/bridges"
+            href={`/work/${data?.featuredLeft?.slug}`}
             role="group"
           >
-            <SimpleGrid
-              columns={1}
-              bg="background"
-              boxShadow="lg"
-              borderRadius="3xl"
-              position="relative"
-              overflow="hidden"
-              h="100%"
-            >
-              <Flex flexDir="column" p={{ base: "8", xl: "16" }}>
-                <Img src="/projects/Bridges/logo.svg" w="8" mb="4" />
-                <Heading size="xl">Bridges</Heading>
-                <Text
-                  color="brand.purple.solid"
-                  textTransform="uppercase"
-                  letterSpacing="0.25rem"
-                  mb="2"
-                >
-                  B2B Platform
-                </Text>
-                <Text fontWeight="normal">
-                  Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                  reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                  mollit ex esse exercitation amet. Nisi anim cupidatat
-                  excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem
-                  est aliquip amet voluptate voluptate dolor minim nulla est
-                  proident. Nostrud officia pariatur ut officia.
-                </Text>
-              </Flex>
-              <Img
-                src="/projects/Bridges/cover.png"
-                objectFit="cover"
-                mt="auto"
-                borderTopLeftRadius="3xl"
-                mb={{ base: "0rem", sm: "-4rem" }}
-                ml={{ base: "1.8rem", sm: "4rem" }}
-                transition="all 0.25s ease-in-out"
+            {isPending && <Skeleton w="100%" h="xl" borderRadius="3xl" />}
+            {data && (
+              <SimpleGrid
+                columns={1}
+                bg="background"
                 boxShadow="lg"
-              />
-            </SimpleGrid>
+                borderRadius="3xl"
+                position="relative"
+                overflow="hidden"
+                h="100%"
+              >
+                <Flex flexDir="column" p={{base: '8', xl: '16'}}>
+                  <Img src={data.featuredLeft.icon} h="14" mb="4" mr="auto" />
+                  <Heading size="xl">{data.featuredLeft.title}</Heading>
+                  <Text
+                    color="brand.purple.solid"
+                    transition="all 0.25s ease-in-out"
+                    _groupHover={{
+                      filter: 'brightness(75%)',
+                    }}
+                    textTransform="uppercase"
+                    letterSpacing="0.25rem"
+                    mb="2"
+                  >
+                    {data.featuredLeft.subtitle}
+                  </Text>
+                  <Text fontWeight="normal">
+                    {data.featuredLeft.shortDescription}
+                  </Text>
+                </Flex>
+                <Img
+                  src={data.featuredLeft.cover}
+                  objectFit="cover"
+                  mt="auto"
+                  borderTopLeftRadius="3xl"
+                  mb={{base: '0rem', sm: '-4rem'}}
+                  ml={{base: '1.8rem', sm: '4rem'}}
+                  transition="all 0.25s ease-in-out"
+                  boxShadow="lg"
+                />
+              </SimpleGrid>
+            )}
           </GridItem>
           <GridItem
             area="small2"
             as={Link}
-            href="/projects/deca-ui"
+            href={`/work/${data?.featuredRight?.slug}`}
             role="group"
           >
-            <SimpleGrid
-              columns={1}
-              bg="background"
-              boxShadow="lg"
-              borderRadius="3xl"
-              position="relative"
-              overflow="hidden"
-              h="100%"
-            >
-              <Flex flexDir="column" p={{ base: "8", xl: "16" }}>
-                <Img src="/projects/UBCTennisCircle/logo.svg" w="16" mb="4" />
-                <Heading size="xl">UBC Tennis Circle</Heading>
-                <Text
-                  color="brand.green.solid"
-                  textTransform="uppercase"
-                  letterSpacing="0.25rem"
-                  mb="2"
-                >
-                  Ticket sale website
-                </Text>
-                <Text fontWeight="normal">
-                  Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                  reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                  mollit ex esse exercitation amet. Nisi anim cupidatat
-                  excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem
-                  est aliquip amet voluptate voluptate dolor minim nulla est
-                  proident. Nostrud officia pariatur ut officia. est aliquip
-                </Text>
-              </Flex>
-              <Img
-                src="/projects/UBCTennisCircle/cover.png"
-                objectFit="cover"
-                mt="auto"
-                borderTopLeftRadius="3xl"
-                mb={{ base: "0rem", sm: "-4rem" }}
-                ml={{ base: "1.8rem", sm: "4rem" }}
-                transition="all 0.25s ease-in-out"
+            {isPending && <Skeleton w="100%" h="xl" borderRadius="3xl" />}
+            {data && (
+              <SimpleGrid
+                columns={1}
+                bg="background"
                 boxShadow="lg"
-              />
-            </SimpleGrid>
+                borderRadius="3xl"
+                position="relative"
+                overflow="hidden"
+                h="100%"
+              >
+                <Flex flexDir="column" p={{base: '8', xl: '16'}}>
+                  <Img src={data.featuredRight.icon} h="16" mb="4" mr="auto" />
+                  <Heading size="xl">{data.featuredRight.title}</Heading>
+                  <Text
+                    color="brand.green.solid"
+                    transition="all 0.25s ease-in-out"
+                    _groupHover={{
+                      filter: 'brightness(75%)',
+                    }}
+                    textTransform="uppercase"
+                    letterSpacing="0.25rem"
+                    mb="2"
+                  >
+                    {data.featuredRight.subtitle}
+                  </Text>
+                  <Text fontWeight="normal">
+                    {data.featuredRight.shortDescription}
+                  </Text>
+                </Flex>
+                <Img
+                  src={data.featuredRight.cover}
+                  objectFit="cover"
+                  mt="auto"
+                  borderTopLeftRadius="3xl"
+                  mb={{base: '0rem', sm: '-4rem'}}
+                  ml={{base: '1.8rem', sm: '4rem'}}
+                  transition="all 0.25s ease-in-out"
+                  boxShadow="lg"
+                />
+              </SimpleGrid>
+            )}
           </GridItem>
         </Grid>
       </FlexSection>
 
       <Flex justifyContent="center" my="8">
-        <ButtonLink href="/projects">see everything</ButtonLink>
+        <ButtonLink href="/work">see everything</ButtonLink>
       </Flex>
 
       <Section my="32" position="relative">
-        <SimpleGrid columns={{ base: 1, md: 2 }} gap="10">
+        <SimpleGrid columns={{base: 1, md: 2}} gap="10">
           <Img
             src="/about/headshot-black.jpeg"
             borderRadius="3xl"
-            h={{ base: "sm", sm: "lg", md: "xl" }}
+            h={{base: 'sm', sm: 'lg', md: 'xl'}}
             objectFit="cover"
             w="100%"
             boxShadow="lg"
@@ -398,7 +435,7 @@ const Home = () => {
             </Text>
 
             <Box mt="4">
-              <ButtonLink href="/projects">see more</ButtonLink>
+              <ButtonLink href="/about">see more</ButtonLink>
             </Box>
           </Flex>
         </SimpleGrid>

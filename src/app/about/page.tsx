@@ -12,7 +12,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Section, HiddenHeading, BrandHeading } from "@/components/factory";
-import { Blob, SplitText, ButtonLink } from "@/components";
+import { Blob, SplitText } from "@/components";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { FiMapPin } from "react-icons/fi";

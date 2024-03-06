@@ -1,5 +1,5 @@
-"use client";
-import React, { useRef } from "react";
+'use client';
+import React, {useRef} from 'react';
 import {
   useToast,
   Icon,
@@ -7,8 +7,6 @@ import {
   Input,
   Box,
   FormErrorMessage,
-  FormErrorIcon,
-  FormLabel,
   FormControl,
   Button,
   SimpleGrid,
@@ -18,49 +16,44 @@ import {
   Heading,
   GridItem,
   Textarea,
-} from "@chakra-ui/react";
-import {
-  BrandHeading,
-  HiddenHeading,
-  FlexSection,
-  Section,
-} from "@/components/factory";
-import { Blob, SplitText } from "@/components";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { FiMail } from "react-icons/fi";
-import { contactSchema, ContactSchema } from "@/forms";
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@chakra-ui/react';
+import {BrandHeading, HiddenHeading, Section} from '@/components/factory';
+import {Blob, SplitText} from '@/components';
+import {useGSAP} from '@gsap/react';
+import {gsap} from 'gsap';
+import {FiMail} from 'react-icons/fi';
+import {contactSchema, ContactSchema} from '@/forms';
+import axios from 'axios';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
 
 const Contact = () => {
   const statusToast = useToast({
     containerStyle: {
-      borderRadius: "full",
+      borderRadius: 'full',
     },
   });
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      gsap.set(".animate-header", { visibility: "visible" });
-      gsap.from(".animate-header", {
+      gsap.set('.animate-header', {visibility: 'visible'});
+      gsap.from('.animate-header', {
         y: 75,
         stagger: {
           each: 0.01,
         },
       });
     },
-    { scope: container },
+    {scope: container}
   );
 
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactSchema>({ resolver: zodResolver(contactSchema) });
+    formState: {errors, isSubmitting},
+  } = useForm<ContactSchema>({resolver: zodResolver(contactSchema)});
 
   console.log(errors);
 
@@ -78,21 +71,21 @@ const Contact = () => {
           last_name,
           email_address,
           message,
-        },
+        }
       );
 
       if (res.data) {
         reset();
         statusToast({
           title: res.data.message,
-          status: "success",
+          status: 'success',
         });
       }
     } catch (e) {
       if (axios.isAxiosError(e)) {
         statusToast({
-          title: "An unexpected error has occurred",
-          status: "error",
+          title: 'An unexpected error has occurred',
+          status: 'error',
         });
       }
     }
@@ -126,10 +119,10 @@ const Contact = () => {
         />
       </Section>
       <main>
-        <Flex alignItems="center" py={{ base: "48", lg: "58" }} minH="100vh">
+        <Flex alignItems="center" py={{base: '48', lg: '58'}} minH="100vh">
           <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            gap={{ base: "8", md: "10", lg: "12" }}
+            columns={{base: 1, lg: 2}}
+            gap={{base: '8', md: '10', lg: '12'}}
           >
             <Flex flexDir="column" gap="2" justifyContent="center">
               <HiddenHeading>Contact me</HiddenHeading>
@@ -152,13 +145,13 @@ const Contact = () => {
               </Flex>
             </Flex>
             <Flex
-              justifySelf={{ base: "flex-start", lg: "center" }}
+              justifySelf={{base: 'flex-start', lg: 'center'}}
               bg="background"
               borderRadius="3xl"
               boxShadow="lg"
-              p={{ base: "8", lg: "12" }}
+              p={{base: '8', lg: '12'}}
               flexDir="column"
-              w={{ base: "100%", xl: "lg" }}
+              w={{base: '100%', xl: 'lg'}}
             >
               <Heading as="h2" size="lg" mb="4">
                 Get in touch
@@ -166,7 +159,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid
                   gap="4"
-                  templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+                  templateColumns={{base: '1fr', md: '1fr 1fr'}}
                   templateAreas={{
                     base: `"first-name" 
                          "last-name" 
@@ -184,7 +177,7 @@ const Contact = () => {
                         size="lg"
                         placeholder="First Name"
                         isDisabled={isSubmitting}
-                        {...register("first_name")}
+                        {...register('first_name')}
                       />
                       <FormErrorMessage ml="4">
                         {errors?.first_name?.message}
@@ -198,7 +191,7 @@ const Contact = () => {
                         size="lg"
                         placeholder="Last Name"
                         isDisabled={isSubmitting}
-                        {...register("last_name")}
+                        {...register('last_name')}
                       />
                       <FormErrorMessage ml="4">
                         {errors?.last_name?.message}
@@ -213,7 +206,7 @@ const Contact = () => {
                         size="lg"
                         type="email"
                         isDisabled={isSubmitting}
-                        {...register("email_address")}
+                        {...register('email_address')}
                       />
                       <FormErrorMessage ml="4">
                         {errors?.email_address?.message}
@@ -228,7 +221,7 @@ const Contact = () => {
                         resize="none"
                         rows={5}
                         isDisabled={isSubmitting}
-                        {...register("message")}
+                        {...register('message')}
                       />
                       <FormErrorMessage ml="4">
                         {errors?.message?.message}
