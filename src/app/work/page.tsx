@@ -80,14 +80,14 @@ const Card = ({data}: {data: CaseStudy}) => {
         <Img
           src={data.cover}
           objectFit="cover"
-          borderTopLeftRadius="3xl"
+          borderTopLeftRadius="xl"
           mt="auto"
           ml="2rem"
           w="100%"
           transition="all 0.25s ease-in-out"
           boxShadow="lg"
           h={{base: '64', sm: '80', md: '64'}}
-          objectPosition="30% top"
+          objectPosition="0% top"
         />
       </SimpleGrid>
     </GridItem>

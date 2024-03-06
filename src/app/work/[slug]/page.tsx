@@ -80,7 +80,7 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
         <Flex py={{base: '48', lg: '64'}} minH="100vh" flexDir="column" gap="8">
           {isPending && (
             <>
-              <Skeleton w="70%" h="24" borderRadius="xl" mt="6" />
+              <Skeleton w="70%" h="24" borderRadius="3xl" mt="6" />
               <SkeletonText
                 noOfLines={4}
                 spacing="3"
