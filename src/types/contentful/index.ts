@@ -1,1 +1,5 @@
-export type { TypeCaseStudies, TypeCaseStudiesFields, TypeCaseStudiesSkeleton } from "./TypeCaseStudies";
+export type {
+  TypeCaseStudies,
+  TypeCaseStudiesFields,
+  TypeCaseStudiesSkeleton,
+} from './TypeCaseStudies';

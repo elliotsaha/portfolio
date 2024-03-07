@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   Alert,
   AlertTitle,
@@ -6,14 +6,14 @@ import {
   CloseButton,
   ToastProps,
   Icon,
-} from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
-import { FiCheckCircle, FiAlertCircle, FiInfo } from "react-icons/fi";
+} from '@chakra-ui/react';
+import {CloseIcon} from '@chakra-ui/icons';
+import {FiCheckCircle, FiAlertCircle, FiInfo} from 'react-icons/fi';
 
 export const Toast = (props: ToastProps) => {
   const {
     status,
-    variant = "solid",
+    variant = 'solid',
     id,
     title,
     isClosable,
@@ -41,9 +41,9 @@ export const Toast = (props: ToastProps) => {
       <Flex flex="1" maxWidth="100%" flexDir="row" alignItems="center" gap="2">
         {title && (
           <>
-            {status === "info" && <Icon as={FiInfo} fontSize="18" />}
-            {status === "success" && <Icon as={FiCheckCircle} fontSize="18" />}
-            {status === "error" && <Icon as={FiAlertCircle} fontSize="18" />}
+            {status === 'info' && <Icon as={FiInfo} fontSize="18" />}
+            {status === 'success' && <Icon as={FiCheckCircle} fontSize="18" />}
+            {status === 'error' && <Icon as={FiAlertCircle} fontSize="18" />}
             <AlertTitle id={ids?.title}>{title}</AlertTitle>
           </>
         )}

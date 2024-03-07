@@ -1,13 +1,13 @@
-import { NextRequest } from "next/server";
-import { ServerResponse } from "@/helpers";
-import { contactSchema, ContactSchema } from "@/forms";
-import { sendMail, logger } from "@/lib";
-import { ContactEmail } from "@/emails";
+import {NextRequest} from 'next/server';
+import {ServerResponse} from '@/helpers';
+import {contactSchema, ContactSchema} from '@/forms';
+import {sendMail, logger} from '@/lib';
+import {ContactEmail} from '@/emails';
 
 export const POST = async (request: NextRequest) => {
   const body: ContactSchema = await request.json();
 
-  const { first_name, last_name, email_address, message } = body;
+  const {first_name, last_name, email_address, message} = body;
 
   const validation = contactSchema.safeParse({
     first_name,
@@ -30,12 +30,12 @@ export const POST = async (request: NextRequest) => {
         }),
       });
 
-      return ServerResponse.success("Successfully sent message.");
+      return ServerResponse.success('Successfully sent message.');
     } catch (e) {
       logger.error(e);
       return ServerResponse.serverError();
     }
   } else {
-    return ServerResponse.userError("Invalid Schema");
+    return ServerResponse.userError('Invalid Schema');
   }
 };

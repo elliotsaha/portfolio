@@ -1,11 +1,11 @@
-import { ButtonProps, Button, Link, Icon } from "@chakra-ui/react";
-import { FiArrowUpRight } from "react-icons/fi";
+import {ButtonProps, Button, Link, Icon} from '@chakra-ui/react';
+import {FiArrowUpRight} from 'react-icons/fi';
 
 interface ButtonLinkProps extends ButtonProps {
   href: string;
 }
 
-export const ButtonLink = ({ href, ...props }: ButtonLinkProps) => (
+export const ButtonLink = ({href, ...props}: ButtonLinkProps) => (
   <Button
     size="lg"
     role="group"
@@ -15,8 +15,8 @@ export const ButtonLink = ({ href, ...props }: ButtonLinkProps) => (
         as={FiArrowUpRight}
         transition="all 0.25s ease-in-out"
         _groupHover={{
-          pl: "0.5",
-          pb: "0.5",
+          pl: '0.5',
+          pb: '0.5',
         }}
       />
     }

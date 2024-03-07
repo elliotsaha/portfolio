@@ -1,5 +1,5 @@
 'use client';
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import {
   Box,
   Text,
@@ -18,12 +18,12 @@ import {
   BrandHeading,
   HiddenHeading,
 } from '@/components/factory';
-import {SplitText} from '@/components';
-import {useGSAP} from '@gsap/react';
-import {gsap} from 'gsap';
+import { SplitText } from '@/components';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
 import axios from 'axios';
-import {CaseStudy} from '@/types';
-import {useQuery} from '@tanstack/react-query';
+import { CaseStudy } from '@/types';
+import { useQuery } from '@tanstack/react-query';
 
 const getAllCaseStudies = async () => {
   const featured = await axios.get(
@@ -32,16 +32,19 @@ const getAllCaseStudies = async () => {
   return featured.data;
 };
 
-const Card = ({data}: {data: CaseStudy}) => {
+const Card = ({ data }: { data: CaseStudy }) => {
   return (
-    <GridItem as={Link} href={`/work/${data.slug}`} role="group" 
-        bg="mono.white"
-        position="relative"
-        h="100%"
-        borderRadius="3xl"
+    <GridItem
+      as={Link}
+      href={`/work/${data.slug}`}
+      role="group"
+      bg="mono.white"
+      position="relative"
+      h="100%"
+      borderRadius="3xl"
     >
       <Flex
-        overflow='hidden'
+        overflow="hidden"
         flexDirection="column"
         justifyContent="space-between"
         boxShadow="lg"
@@ -49,7 +52,7 @@ const Card = ({data}: {data: CaseStudy}) => {
         h="100%"
       >
         <Flex flexDir="column" px="8" pt="8">
-          <Image src={data.icon} h="14" mb="4" mr="auto" />
+          <Image src={data.icon} h="14" mb="4" mr="auto" alt={data.title} />
           <Heading fontSize="26">{data.title}</Heading>
           <Text
             color="cyan.500"
@@ -89,8 +92,9 @@ const Card = ({data}: {data: CaseStudy}) => {
           w="100%"
           transition="all 0.25s ease-in-out"
           boxShadow="lg"
-          h={{base: '64', sm: '80', md: '64'}}
+          h={{ base: '64', sm: '80', md: '64' }}
           objectPosition="0% top"
+          alt={data.title}
         />
       </Flex>
     </GridItem>
@@ -100,13 +104,13 @@ const Card = ({data}: {data: CaseStudy}) => {
 const Work = () => {
   const container = useRef<HTMLDivElement>(null);
 
-  const {isPending, error, data} = useQuery<Array<CaseStudy>>({
+  const { isPending, error, data } = useQuery<Array<CaseStudy>>({
     queryKey: ['all-case-studies'],
     queryFn: getAllCaseStudies,
   });
   useGSAP(
     () => {
-      gsap.set('.animate-header', {visibility: 'visible'});
+      gsap.set('.animate-header', { visibility: 'visible' });
       gsap.from('.animate-header', {
         y: 150,
         stagger: {
@@ -114,61 +118,70 @@ const Work = () => {
         },
       });
     },
-    {scope: container}
+    { scope: container }
   );
 
   return (
     <Box position="relative">
-    <Image src="/blur/4.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", lg: "-36"}} zIndex="-1"/>
-    <Container maxW="container.xl" ref={container}>
-      <Section position="relative" pb="36">
-        <main>
-          <Flex
-            justifyContent="center"
-            justifySelf="center"
-            pt={{base: '48', md: '80'}}
-            minH="90vh"
-            flexDir="column"
-          >
-            <FlexSection flexDir="column" gap="4" mb="12">
-              <Flex flexDir="column" gap="2" justifyContent="center">
-                <HiddenHeading>Work</HiddenHeading>
-                <BrandHeading overflow="hidden">
-                  <SplitText className="animate-header" visibility="hidden">
-                    case studies.
-                  </SplitText>
-                </BrandHeading>
-                <Text maxW="xl">
-                  A collection of documented case studies of all the web applications and tools I've created and managed. 
-                </Text>
-              </Flex>
-            </FlexSection>
-            <Grid
-              gridTemplateColumns={{
-                base: '100%',
-                md: '1fr 1fr',
-                xl: '1fr 1fr 1fr',
-              }}
-              gap="8"
-              position="relative"
+      <Image
+        src="/blur/4.png"
+        alt="blur"
+        w="100%"
+        position="absolute"
+        loading="eager"
+        mt={{ base: '24', lg: '-36' }}
+        zIndex="-1"
+      />
+      <Container maxW="container.xl" ref={container}>
+        <Section position="relative" pb="36">
+          <main>
+            <Flex
+              justifyContent="center"
+              justifySelf="center"
+              pt={{ base: '48', md: '80' }}
+              minH="90vh"
+              flexDir="column"
             >
-              {isPending &&
-                Array(9)
-                  .fill(1)
-                  .map(() => <Skeleton borderRadius="3xl" w="100%" h="md" />)}
+              <FlexSection flexDir="column" gap="4" mb="12">
+                <Flex flexDir="column" gap="2" justifyContent="center">
+                  <HiddenHeading>Work</HiddenHeading>
+                  <BrandHeading overflow="hidden">
+                    <SplitText className="animate-header" visibility="hidden">
+                      case studies.
+                    </SplitText>
+                  </BrandHeading>
+                  <Text maxW="xl">
+                    A collection of documented case studies of all the web
+                    applications and tools I&apos;ve created and managed.
+                  </Text>
+                </Flex>
+              </FlexSection>
+              <Grid
+                gridTemplateColumns={{
+                  base: '100%',
+                  md: '1fr 1fr',
+                  xl: '1fr 1fr 1fr',
+                }}
+                gap="8"
+                position="relative"
+              >
+                {isPending &&
+                  Array(9)
+                    .fill(1)
+                    .map((i) => <Skeleton borderRadius="3xl" w="100%" h="md" key={i} />)}
 
-              {error && (
-                <Text>
-                  An unexpected error occurred. Please try again later.
-                </Text>
-              )}
+                {error && (
+                  <Text>
+                    An unexpected error occurred. Please try again later.
+                  </Text>
+                )}
 
-              {data && data.map(i => <Card data={i} />)}
-            </Grid>
-          </Flex>
-        </main>
-      </Section>
-    </Container>
+                {data && data.map((i, idx) => <Card data={i} key={idx} />)}
+              </Grid>
+            </Flex>
+          </main>
+        </Section>
+      </Container>
     </Box>
   );
 };
