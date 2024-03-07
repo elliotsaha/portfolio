@@ -90,7 +90,7 @@ const About = () => {
                       Over the course of four years, I have dedicated myself to
                       the intricacies of developing React web applications, an
                       endeavor that has allowed me to navigate and leverage the
-                      capabilities of various meta frameworks such as NextJS and
+                      capabilities of various meta-frameworks such as NextJS and
                       Gatsby. I have experience developing and publishing
                       component system libraries, building authentication
                       systems, and have leveraged CI/CD systems. Currently, I’m
@@ -127,8 +127,8 @@ const About = () => {
               label="Design & Prototyping"
               color="brand.blue.solid"
             >
-              The first stage in building a web application to design and
-              prototype it, allowing me to develop a general theme of the
+              The first stage in building a web application is to design and
+              prototype it, allowing you to develop a general theme of the
               application which could vary depending on the audience that the
               product is trying to market towards.
             </FlowCard>
