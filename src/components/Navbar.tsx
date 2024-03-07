@@ -94,6 +94,8 @@ export const Navbar = () => {
             display={{ base: "flex", sm: "none", md: "flex" }}
           >
             <Text
+              as={Link}
+              href="/"
               variant="active"
               fontSize={{ base: "lg", sm: "md", lg: "lg" }}
             >

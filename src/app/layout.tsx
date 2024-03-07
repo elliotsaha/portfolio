@@ -3,8 +3,11 @@ import {Navbar, Footer, Providers} from '@/components';
 import {Body} from '@/components/factory';
 
 export const metadata: Metadata = {
-  title: "Elliot's Portfolio",
-  description: "Elliot's Portfolio",
+  title: {
+    default: "Elliot Saha's Portfolio",
+    template: `%s | Elliot Saha's Portfolio`
+  },
+  description: "Hi, I'm Elliot—a seasoned web developer at the forefront of deploying innovative solutions for the digital age.",
 };
 
 const RootLayout = ({
