@@ -129,7 +129,7 @@ const Contact = () => {
               </Flex>
               <Flex
                 justifySelf={{ base: 'flex-start', lg: 'center' }}
-                bg="background"
+                bg="mono.white"
                 borderRadius="3xl"
                 boxShadow="lg"
                 p={{ base: '8', lg: '12' }}
