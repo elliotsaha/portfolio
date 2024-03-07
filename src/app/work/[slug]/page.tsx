@@ -1,6 +1,7 @@
 'use client';
 import React, {useEffect, useRef} from 'react';
 import {
+  Box,
   Text,
   Container,
   Flex,
@@ -10,8 +11,8 @@ import {
   Icon,
   Link
 } from '@chakra-ui/react';
-import {Section, BrandHeading, HiddenHeading} from '@/components/factory';
-import {Blob, SplitText} from '@/components';
+import {BrandHeading, HiddenHeading} from '@/components/factory';
+import {SplitText} from '@/components';
 import {useGSAP} from '@gsap/react';
 import {gsap} from 'gsap';
 import axios from 'axios';
@@ -59,24 +60,9 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
     {scope: container, dependencies: [data]}
   );
   return (
+    <Box position="relative">
+<Image src="/blur/5.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", md: "-36"}} zIndex="-1" opacity="70%"/>
     <Container maxW="container.md">
-      <Section position="relative">
-        <Blob
-          size="2xl"
-          bg="brand.yellow.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.purple.blur"
-          blur="30rem"
-          position="absolute"
-          top="42"
-          right="0"
-        />
-      </Section>
       <main>
         <Flex py={{base: '48', lg: '64'}} minH="100vh" flexDir="column" gap="8">
           {isPending && (
@@ -180,6 +166,7 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
         </Flex>
       </main>
     </Container>
+    </Box>
   );
 };
 

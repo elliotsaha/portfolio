@@ -1,36 +1,22 @@
 'use client';
-import {Container, Box, Text} from '@chakra-ui/react';
+import {Image, Container, Box, Text} from '@chakra-ui/react';
 import {BrandHeading, FlexSection} from '@/components/factory';
-import {ButtonLink, Blob} from '@/components';
+import {ButtonLink} from '@/components';
 
 const NotFoundPage = () => {
   return (
+    <Box position="relative">
+    <Image src="/blur/1.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "-24", sm: "-96"}} zIndex="-1"/>
     <Container maxW="container.xl">
       <FlexSection
         flexDir="column"
         justifyContent="center"
         alignItems="center"
-        minH="100vh"
+        my="96"
         position="relative"
       >
-        <Blob
-          size="2xl"
-          bg="brand.blue.blur"
-          blur="15rem"
-          position="absolute"
-          top="42"
-          left="24"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.purple.blur"
-          blur="10rem"
-          position="absolute"
-          top="42"
-          right="0"
-        />
         <Box>
-          <BrandHeading>404</BrandHeading>
+          <BrandHeading textAlign="center" mb="2">404</BrandHeading>
           <Text mb="6" textAlign="center" maxW="48" mx="auto" mt="-2">
             It looks like your lost...
           </Text>
@@ -38,6 +24,7 @@ const NotFoundPage = () => {
         </Box>
       </FlexSection>
     </Container>
+    </Box>
   );
 };
 

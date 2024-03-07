@@ -73,7 +73,7 @@ export const Navbar = () => {
   }, [breakpoint, isOpen, onClose]);
 
   const scrollCssProps = {
-    bg: "background",
+    bg: "white",
     px: "6",
     mt: "4",
     borderRadius: "full",
@@ -134,7 +134,7 @@ export const Navbar = () => {
           isCentered
           blockScrollOnMount={true}
         >
-          <ModalOverlay backdropFilter="auto" backdropBlur="30px" />
+          <ModalOverlay backdropFilter="auto" backdropBlur="10px" />
           <ModalContent bg="transparent" boxShadow="none" color="white" mx="8">
             <ModalCloseButton size="lg" />
             <ModalBody>

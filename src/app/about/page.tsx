@@ -12,7 +12,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Section, HiddenHeading, BrandHeading } from "@/components/factory";
-import { Blob, SplitText } from "@/components";
+import { SplitText } from "@/components";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { FiMapPin } from "react-icons/fi";
@@ -26,7 +26,7 @@ interface FlowCardProps {
 
 const FlowCard = ({ stage, color, label, children }: FlowCardProps) => (
   <Flex
-    bg="background"
+    bg="mono.white"
     p={{ base: "8", xl: "12" }}
     borderRadius="3xl"
     boxShadow="lg"
@@ -60,23 +60,10 @@ const About = () => {
     { scope: container },
   );
   return (
+    <Box position="relative">
+    <Image src="/blur/3.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", lg: "-36"}} zIndex="-1"/>
     <Container maxW="container.xl" ref={container}>
       <Section position="relative">
-        <Blob
-          size="2xl"
-          bg="brand.green.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.yellow.blur"
-          blur="15rem"
-          position="absolute"
-          top="42"
-          left="96"
-        />
         <main>
           <Flex alignItems="center" pt={{ base: "48", md: "42" }} minH="90vh">
             <FlexSection flexDir="column" gap="4">
@@ -112,14 +99,6 @@ Over the course of four years, I have dedicated myself to the intricacies of dev
       </Section>
 
       <Section my="32" position="relative">
-        <Blob
-          size="2xl"
-          bg="brand.yellow.blur"
-          blur="40rem"
-          position="absolute"
-          top="20"
-          right="0"
-        />
         <BrandHeading>process & workflow.</BrandHeading>
         <SimpleGrid
           templateColumns={{ base: "1fr", md: "1fr 1fr" }}
@@ -175,6 +154,7 @@ The final phase in building a web application is management, which encompasses t
         </SimpleGrid>
       </Section>
     </Container>
+    </Box>
   );
 };
 

@@ -2,6 +2,7 @@
 import React, {useRef} from 'react';
 import {
   useToast,
+  Image,
   Icon,
   Flex,
   Input,
@@ -17,8 +18,8 @@ import {
   GridItem,
   Textarea,
 } from '@chakra-ui/react';
-import {BrandHeading, HiddenHeading, Section} from '@/components/factory';
-import {Blob, SplitText} from '@/components';
+import {BrandHeading, HiddenHeading} from '@/components/factory';
+import {SplitText} from '@/components';
 import {useGSAP} from '@gsap/react';
 import {gsap} from 'gsap';
 import {FiMail} from 'react-icons/fi';
@@ -55,8 +56,6 @@ const Contact = () => {
     formState: {errors, isSubmitting},
   } = useForm<ContactSchema>({resolver: zodResolver(contactSchema)});
 
-  console.log(errors);
-
   const onSubmit = async ({
     first_name,
     last_name,
@@ -92,32 +91,9 @@ const Contact = () => {
   };
 
   return (
+    <Box position="relative">
+    <Image src="/blur/6.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", lg: "-42", xl: "-96"}} zIndex="-1"/>
     <Container maxW="container.xl" ref={container}>
-      <Section position="relative">
-        <Blob
-          size="2xl"
-          bg="brand.blue.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.yellow.blur"
-          blur="30rem"
-          position="absolute"
-          top="42"
-          right="0"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.purple.blur"
-          blur="15rem"
-          position="absolute"
-          top="42"
-          left="96"
-        />
-      </Section>
       <main>
         <Flex alignItems="center" py={{base: '48', lg: '58'}} minH="100vh">
           <SimpleGrid
@@ -243,6 +219,7 @@ Interested in discussing a collaborative project, seeking advice on tech-related
         </Flex>
       </main>
     </Container>
+    </Box>
   );
 };
 

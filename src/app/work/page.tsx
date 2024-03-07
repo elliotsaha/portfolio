@@ -1,6 +1,7 @@
 'use client';
 import React, {useRef} from 'react';
 import {
+  Box,
   Text,
   Container,
   Flex,
@@ -18,7 +19,7 @@ import {
   BrandHeading,
   HiddenHeading,
 } from '@/components/factory';
-import {Blob, SplitText} from '@/components';
+import {SplitText} from '@/components';
 import {useGSAP} from '@gsap/react';
 import {gsap} from 'gsap';
 import axios from 'axios';
@@ -35,15 +36,18 @@ const getAllCaseStudies = async () => {
 const Card = ({data}: {data: CaseStudy}) => {
   return (
     <GridItem as={Link} href={`/work/${data.slug}`} role="group" 
-        bg="background"
-        boxShadow="lg"
-        borderRadius="3xl"
+        bg="mono.white"
         position="relative"
         h="100%"
+        borderRadius="3xl"
     >
-      <SimpleGrid
-        columns={1}
+      <Flex
         overflow='hidden'
+        flexDirection="column"
+        justifyContent="space-between"
+        boxShadow="lg"
+        borderRadius="3xl"
+        h="100%"
       >
         <Flex flexDir="column" px="8" pt="8">
           <Image src={data.icon} h="14" mb="4" mr="auto" />
@@ -82,7 +86,6 @@ const Card = ({data}: {data: CaseStudy}) => {
           src={data.cover}
           objectFit="cover"
           borderTopLeftRadius="xl"
-          mt="auto"
           ml="2rem"
           w="100%"
           transition="all 0.25s ease-in-out"
@@ -90,7 +93,7 @@ const Card = ({data}: {data: CaseStudy}) => {
           h={{base: '64', sm: '80', md: '64'}}
           objectPosition="0% top"
         />
-      </SimpleGrid>
+      </Flex>
     </GridItem>
   );
 };
@@ -116,23 +119,10 @@ const Work = () => {
   );
 
   return (
+    <Box position="relative">
+    <Image src="/blur/4.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", lg: "-36"}} zIndex="-1"/>
     <Container maxW="container.xl" ref={container}>
       <Section position="relative" pb="36">
-        <Blob
-          size="2xl"
-          bg="brand.blue.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.yellow.blur"
-          blur="15rem"
-          position="absolute"
-          top="42"
-          left="96"
-        />
         <main>
           <Flex
             justifyContent="center"
@@ -175,28 +165,12 @@ const Work = () => {
               )}
 
               {data && data.map(i => <Card data={i} />)}
-
-              <Blob
-                size="2xl"
-                bg="brand.blue.blur"
-                blur="40rem"
-                position="absolute"
-                bottom="96"
-                left="0"
-              />
-              <Blob
-                size="2xl"
-                bg="brand.yellow.blur"
-                blur="40rem"
-                position="absolute"
-                bottom="96"
-                right="0"
-              />
             </Grid>
           </Flex>
         </main>
       </Section>
     </Container>
+    </Box>
   );
 };
 

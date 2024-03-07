@@ -20,7 +20,7 @@ import {
   BrandHeading,
   HiddenHeading,
 } from '@/components/factory';
-import {Blob, ButtonLink, SplitText} from '@/components';
+import {ButtonLink, SplitText} from '@/components';
 import {FiBox, FiTable, FiLayers, FiMapPin} from 'react-icons/fi';
 import {IconType} from 'react-icons';
 import {useGSAP} from '@gsap/react';
@@ -39,7 +39,7 @@ interface CardProps {
 const Card = ({title, children, icon, color}: CardProps) => {
   return (
     <Flex
-      bg="background"
+      bg="mono.white"
       p={{base: '8', xl: '12'}}
       borderRadius="3xl"
       flexDir="column"
@@ -96,34 +96,12 @@ const Home = () => {
   );
 
   return (
+    <Box position="relative">
+    <Image src="/blur/1.png" alt="blur" w="100%" position="absolute" loading="eager" mt={{base: "24", lg: "-36"}} zIndex="-1"/>
     <Container maxW="container.xl" ref={container}>
       <Section position="relative">
-        {/* background blur */}
-        <Blob
-          size="2xl"
-          bg="brand.green.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.blue.blur"
-          blur="15rem"
-          position="absolute"
-          top="42"
-          left="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.purple.blur"
-          blur="10rem"
-          position="absolute"
-          top="42"
-          right="0"
-        />
         <main>
-          <Flex h="100vh" alignItems="center">
+          <Flex h={{base: "auto", md: "100vh"}} alignItems="center" pt={{base: "48", md: "0"}} pb={{base: "24", md: "0"}}>
             <FlexSection flexDir="column" gap="4">
               <Flex mb={{base: '-2', md: '-4'}} alignItems="center" gap="1">
                 <Icon as={FiMapPin} color="mono.gray.500" />
@@ -171,6 +149,8 @@ const Home = () => {
                             lg: `"gc1 gc2 gc3"`}}
         gridTemplateColumns={{base: "1fr", md: "1fr 1fr", lg: "1fr 1fr 1fr"}}
         gridTemplateRows={{base: "1fr 1fr 1fr", md: "1fr 1fr", lg: "1fr"}}
+        display={{base: "flex", md: "grid"}}
+          flexDirection="column"
       >
         <GridItem area="gc1">
 
@@ -203,45 +183,6 @@ const Home = () => {
       </Grid>
 
       <FlexSection mt="32" flexDir="column" position="relative">
-        <Blob
-          size="xl"
-          bg="brand.blue.blur"
-          blur="40rem"
-          position="absolute"
-          top="96"
-        />
-        <Blob
-          size="3xl"
-          bg="brand.purple.blur"
-          blur="17rem"
-          position="absolute"
-          top="42"
-          right="96"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.green.blur"
-          blur="10rem"
-          position="absolute"
-          top="42"
-          right="0"
-        />
-        <Blob
-          size="2xl"
-          bg="brand.blue.blur"
-          blur="10rem"
-          position="absolute"
-          bottom="22"
-          right="0"
-        />
-        <Blob
-          size="xl"
-          bg="brand.purple.blur"
-          blur="10rem"
-          position="absolute"
-          bottom="22"
-          left="0"
-        />
         <BrandHeading as="h2" mb="8">
           featured works.
         </BrandHeading>
@@ -275,7 +216,7 @@ const Home = () => {
             {data && (
               <SimpleGrid
                 columns={{base: 1, lg: 2}}
-                bg="background"
+                bg="mono.white"
                 boxShadow="lg"
                 borderRadius="3xl"
                 position="relative"
@@ -323,7 +264,7 @@ const Home = () => {
             {data && (
               <SimpleGrid
                 columns={1}
-                bg="background"
+                bg="mono.white"
                 boxShadow="lg"
                 borderRadius="3xl"
                 position="relative"
@@ -372,7 +313,7 @@ const Home = () => {
             {data && (
               <SimpleGrid
                 columns={1}
-                bg="background"
+                bg="mono.white"
                 boxShadow="lg"
                 borderRadius="3xl"
                 position="relative"
@@ -419,6 +360,7 @@ const Home = () => {
       </Flex>
 
       <Section my="32" position="relative">
+    <Image src="/blur/2.png" alt="blur" w="100%" position="absolute" loading="eager" zIndex="-1" opacity="70%"/>
         <SimpleGrid columns={{base: 1, md: 2}} gap="10">
           <Image
             src="/about/headshot-black.jpeg"
@@ -441,6 +383,7 @@ const Home = () => {
         </SimpleGrid>
       </Section>
     </Container>
+    </Box>
   );
 };
 
