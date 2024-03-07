@@ -83,7 +83,7 @@ Over the course of four years, I have dedicated myself to the intricacies of dev
                   </Text>
                 </Flex>
                 <Image
-                  src="/about/headshot-white.jpeg"
+                  src="/about/headshot-white.png"
                   borderRadius="3xl"
                   h={{ base: "sm", sm: "md", md: "lg" }}
                   objectPosition="50% 30%"
@@ -124,7 +124,7 @@ The final phase in building a web application is management, which encompasses t
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="10">
           <Box boxShadow="lg" borderRadius="3xl" position="relative">
             <Image
-              src="/about/vancouver.jpg"
+              src="/about/vancouver.png"
               borderRadius="3xl"
               h={{ base: "sm", sm: "lg", md: "xl" }}
               objectFit="cover"

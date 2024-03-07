@@ -363,7 +363,7 @@ const Home = () => {
     <Image src="/blur/2.png" alt="blur" w="100%" position="absolute" loading="eager" zIndex="-1" opacity="70%"/>
         <SimpleGrid columns={{base: 1, md: 2}} gap="10">
           <Image
-            src="/about/headshot-black.jpeg"
+            src="/about/headshot-black.png"
             borderRadius="3xl"
             h={{base: 'sm', sm: 'lg', md: 'xl'}}
             objectFit="cover"
