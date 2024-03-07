@@ -103,6 +103,7 @@ Over the course of four years, I have dedicated myself to the intricacies of dev
                   objectFit="cover"
                   w="100%"
                   boxShadow="lg"
+                  loading="eager"
                 />
               </SimpleGrid>
             </FlexSection>

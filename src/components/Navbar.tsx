@@ -87,7 +87,7 @@ export const Navbar = () => {
           templateColumns={{ base: "1fr 1fr", md: "1fr 2fr 1fr" }}
           py="4"
           transition="all 0.25s ease-in-out"
-          sx={scrollPosition > 30 ? scrollCssProps : {}}
+          sx={scrollPosition > 0 ? scrollCssProps : {}}
         >
           <FlexSection
             alignItems="center"

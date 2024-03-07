@@ -34,14 +34,16 @@ const getAllCaseStudies = async () => {
 
 const Card = ({data}: {data: CaseStudy}) => {
   return (
-    <GridItem as={Link} href={`/work/${data.slug}`} role="group" overflow="hidden">
-      <SimpleGrid
-        columns={1}
+    <GridItem as={Link} href={`/work/${data.slug}`} role="group" 
         bg="background"
         boxShadow="lg"
         borderRadius="3xl"
         position="relative"
         h="100%"
+    >
+      <SimpleGrid
+        columns={1}
+        overflow='hidden'
       >
         <Flex flexDir="column" px="8" pt="8">
           <Image src={data.icon} h="14" mb="4" mr="auto" />

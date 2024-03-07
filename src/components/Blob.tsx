@@ -13,6 +13,8 @@ export const Blob = ({ bg, size, blur, ...props }: BlobProps) => {
       w={size}
       h={size}
       filter={`blur(${blur})`}
+      willChange="transform"
+      transform="translate3d(0, 0, 0)"
       borderRadius="full"
       zIndex="-1"
       {...props}
