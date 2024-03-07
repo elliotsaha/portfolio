@@ -1,5 +1,5 @@
 'use client';
-import {Container, Box, Flex, Text} from '@chakra-ui/react';
+import {Container, Box, Text} from '@chakra-ui/react';
 import {BrandHeading, FlexSection} from '@/components/factory';
 import {ButtonLink, Blob} from '@/components';
 

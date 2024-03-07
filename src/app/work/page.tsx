@@ -41,7 +41,6 @@ const Card = ({data}: {data: CaseStudy}) => {
         boxShadow="lg"
         borderRadius="3xl"
         position="relative"
-        overflow="hidden"
         h="100%"
       >
         <Flex flexDir="column" px="8" pt="8">
@@ -115,7 +114,7 @@ const Work = () => {
   );
 
   return (
-    <Container maxW="container.xl" ref={container}>
+    <Container maxW="container.xl" ref={container} overflow="hidden">
       <Section position="relative" pb="36">
         <Blob
           size="2xl"

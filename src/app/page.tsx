@@ -75,8 +75,6 @@ const Home = () => {
     queryFn: getFeatured,
   });
 
-  console.log(data);
-
   useGSAP(
     () => {
       gsap.set('.animate-header-line-1', {visibility: 'visible'});
