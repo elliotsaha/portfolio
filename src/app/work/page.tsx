@@ -34,7 +34,7 @@ const getAllCaseStudies = async () => {
 
 const Card = ({data}: {data: CaseStudy}) => {
   return (
-    <GridItem as={Link} href={`/work/${data.slug}`} role="group">
+    <GridItem as={Link} href={`/work/${data.slug}`} role="group" overflow="hidden">
       <SimpleGrid
         columns={1}
         bg="background"
@@ -114,7 +114,7 @@ const Work = () => {
   );
 
   return (
-    <Container maxW="container.xl" ref={container} overflow="hidden">
+    <Container maxW="container.xl" ref={container}>
       <Section position="relative" pb="36">
         <Blob
           size="2xl"
