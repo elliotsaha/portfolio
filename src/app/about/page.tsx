@@ -6,7 +6,7 @@ import {
   Flex,
   Text,
   SimpleGrid,
-  Img,
+  Image,
   Heading,
   Box,
   Icon,
@@ -95,7 +95,7 @@ const About = () => {
 Over the course of four years, I have dedicated myself to the intricacies of developing React web applications, an endeavor that has allowed me to navigate and leverage the capabilities of various meta frameworks such as NextJS and Gatsby. I have experience developing and publishing component system libraries, building authentication systems, and have leveraged CI/CD systems. Currently, I’m developing a B2B company that allows green energy companies to connect with each other.
                   </Text>
                 </Flex>
-                <Img
+                <Image
                   src="/about/headshot-white.jpeg"
                   borderRadius="3xl"
                   h={{ base: "sm", sm: "md", md: "lg" }}
@@ -143,7 +143,7 @@ The final phase in building a web application is management, which encompasses t
       <Section my="32" position="relative">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="10">
           <Box boxShadow="lg" borderRadius="3xl" position="relative">
-            <Img
+            <Image
               src="/about/vancouver.jpg"
               borderRadius="3xl"
               h={{ base: "sm", sm: "lg", md: "xl" }}

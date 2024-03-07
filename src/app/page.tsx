@@ -10,7 +10,7 @@ import {
   Link,
   Flex,
   Grid,
-  Img,
+  Image,
   SimpleGrid,
   Skeleton,
 } from '@chakra-ui/react';
@@ -282,7 +282,7 @@ const Home = () => {
                 overflow="hidden"
               >
                 <Flex flexDir="column" p={{base: '8', lg: '12', xl: '16'}}>
-                  <Img src={data.showcase.icon} h="16" mb="4" mr="auto" />
+                  <Image src={data.showcase.icon} h="16" mb="4" mr="auto" />
                   <Heading size="xl">{data.showcase.title}</Heading>
                   <Text
                     color="brand.blue.solid"
@@ -300,7 +300,7 @@ const Home = () => {
                     {data.showcase.shortDescription}
                   </Text>
                 </Flex>
-                <Img
+                <Image
                   src={data.showcase.cover}
                   objectFit="cover"
                   mt="auto"
@@ -331,7 +331,7 @@ const Home = () => {
                 h="100%"
               >
                 <Flex flexDir="column" p={{base: '8', xl: '16'}}>
-                  <Img src={data.featuredLeft.icon} h="14" mb="4" mr="auto" />
+                  <Image src={data.featuredLeft.icon} h="14" mb="4" mr="auto" />
                   <Heading size="xl">{data.featuredLeft.title}</Heading>
                   <Text
                     color="brand.purple.solid"
@@ -349,7 +349,7 @@ const Home = () => {
                     {data.featuredLeft.shortDescription}
                   </Text>
                 </Flex>
-                <Img
+                <Image
                   src={data.featuredLeft.cover}
                   objectFit="cover"
                   mt="auto"
@@ -380,7 +380,7 @@ const Home = () => {
                 h="100%"
               >
                 <Flex flexDir="column" p={{base: '8', xl: '16'}}>
-                  <Img src={data.featuredRight.icon} h="16" mb="4" mr="auto" />
+                  <Image src={data.featuredRight.icon} h="16" mb="4" mr="auto" />
                   <Heading size="xl">{data.featuredRight.title}</Heading>
                   <Text
                     color="brand.green.solid"
@@ -398,7 +398,7 @@ const Home = () => {
                     {data.featuredRight.shortDescription}
                   </Text>
                 </Flex>
-                <Img
+                <Image
                   src={data.featuredRight.cover}
                   objectFit="cover"
                   mt="auto"
@@ -420,7 +420,7 @@ const Home = () => {
 
       <Section my="32" position="relative">
         <SimpleGrid columns={{base: 1, md: 2}} gap="10">
-          <Img
+          <Image
             src="/about/headshot-black.jpeg"
             borderRadius="3xl"
             h={{base: 'sm', sm: 'lg', md: 'xl'}}

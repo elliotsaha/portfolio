@@ -7,7 +7,7 @@ import {
   Grid,
   SimpleGrid,
   Link,
-  Img,
+  Image,
   Heading,
   GridItem,
   Skeleton,
@@ -44,7 +44,7 @@ const Card = ({data}: {data: CaseStudy}) => {
         h="100%"
       >
         <Flex flexDir="column" px="8" pt="8">
-          <Img src={data.icon} h="14" mb="4" mr="auto" />
+          <Image src={data.icon} h="14" mb="4" mr="auto" />
           <Heading fontSize="26">{data.title}</Heading>
           <Text
             color="cyan.500"
@@ -76,7 +76,7 @@ const Card = ({data}: {data: CaseStudy}) => {
             {data.oneLineDescription}
           </Text>
         </Flex>
-        <Img
+        <Image
           src={data.cover}
           objectFit="cover"
           borderTopLeftRadius="xl"

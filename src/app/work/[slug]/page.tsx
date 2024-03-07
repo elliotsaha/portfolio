@@ -4,7 +4,7 @@ import {
   Text,
   Container,
   Flex,
-  Img,
+  Image,
   Skeleton,
   SkeletonText,
   Icon,
@@ -173,7 +173,7 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
                 </Flex>
               </Flex>
               <Text>{data.shortDescription}</Text>
-              <Img src={data.cover} borderRadius="3xl" my="4" />
+              <Image src={data.cover} borderRadius="3xl" my="4" />
               {data.projectDetails.split("\\n").map(i => <Text mb="3">{i}</Text>)}
             </Flex>
           )}
