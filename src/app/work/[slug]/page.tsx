@@ -8,6 +8,7 @@ import {
   Skeleton,
   SkeletonText,
   Icon,
+  Link
 } from '@chakra-ui/react';
 import {Section, BrandHeading, HiddenHeading} from '@/components/factory';
 import {Blob, SplitText} from '@/components';
@@ -109,10 +110,12 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
                   {data.title}
                 </SplitText>
               </BrandHeading>
-              <Flex gap="2">
-                {data.githubUrl && (
+              <Flex gap="3">
                   <Flex
-                    onClick={() => router.push(data.githubUrl as string)}
+                    as={Link}
+                    href={data.githubUrl}
+                    h="5"
+                    alignSelf="center"
                     cursor="pointer"
                     borderRadius="full"
                     outline="solid"
@@ -124,10 +127,13 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
                   >
                     <Icon as={FiGithub} color="mono.black.500" />
                   </Flex>
-                )}
                 {data.url && (
                   <Flex
-                    onClick={() => router.push(data.url as string)}
+                    h="5"
+                    mr="-0.5"
+                    alignSelf="center"
+                    as={Link}
+                    href={data.url}
                     cursor="pointer"
                     borderRadius="full"
                     outline="solid"
@@ -168,7 +174,7 @@ const CaseStudyDetail = ({params}: {params: {slug: string}}) => {
               </Flex>
               <Text>{data.shortDescription}</Text>
               <Img src={data.cover} borderRadius="3xl" my="4" />
-              <Text>{data.projectDetails}</Text>
+              {data.projectDetails.split("\\n").map(i => <Text mb="3">{i}</Text>)}
             </Flex>
           )}
         </Flex>

@@ -132,10 +132,7 @@ const Contact = () => {
                 </SplitText>
               </BrandHeading>
               <Text maxW="xl">
-                Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                reprehenderit enim labore culpa sint ad nisi Lorem pariatur.
-                Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                reprehenderit enim labore culpa sint ad nisi Lorem pariatur.
+Interested in discussing a collaborative project, seeking advice on tech-related topics, or have a top-tier sushi spot to recommend in Vancouver? I'd be delighted to connect. 
               </Text>
               <Flex alignItems="center" gap="2" mt="4">
                 <Icon as={FiMail} color="mono.black.500" fontSize="18" />

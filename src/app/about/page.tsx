@@ -92,15 +92,7 @@ const About = () => {
                     </SplitText>
                   </BrandHeading>
                   <Text maxW="xl">
-                    Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                    reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                    mollit ex esse exercitation amet. Nisi anim cupidatat
-                    excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem
-                    est aliquip amet voluptate voluptate dolor minim nulla est
-                    proident. Nostrud officia pariatur ut officia. Sit irure
-                    elit esse ea nulla sunt ex occaecat reprehenderit commodo
-                    officia dolor Lorem duis laboris cupidatat officia
-                    voluptate.
+Over the course of four years, I have dedicated myself to the intricacies of developing React web applications, an endeavor that has allowed me to navigate and leverage the capabilities of various meta frameworks such as NextJS and Gatsby. I have experience developing and publishing component system libraries, building authentication systems, and have leveraged CI/CD systems. Currently, I’m developing a B2B company that allows green energy companies to connect with each other.
                   </Text>
                 </Flex>
                 <Img
@@ -133,21 +125,17 @@ const About = () => {
           my="8"
           spacing="10"
         >
-          <FlowCard stage="01" label="Design" color="brand.blue.solid">
-            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-            cillum sint consectetur cupidatat.
+          <FlowCard stage="01" label="Design & Prototyping" color="brand.blue.solid">
+            The first stage in building a web application to design and prototype it, allowing me to develop a general theme of the application which could vary depending on the audience that the product is trying to market towards.
           </FlowCard>
           <FlowCard stage="02" label="Development" color="brand.purple.solid">
-            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-            cillum sint consectetur cupidatat.
+The second stage in building a web application, after the initial design and prototyping phase, is development. This phase is marked by transitioning from conceptual and visual models to functional software. It involves meticulously planned steps enabling the web application to scale.
           </FlowCard>
           <FlowCard stage="03" label="Integration" color="brand.green.solid">
-            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-            cillum sint consectetur cupidatat.
+            The integration phase is a critical phase in building web application development, as it focuses on ensuring that all services and APIs the application relies on are seamlessly managed across both development and production environments.
           </FlowCard>
           <FlowCard stage="04" label="Management" color="brand.yellow.solid">
-            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-            cillum sint consectetur cupidatat.
+The final phase in building a web application is management, which encompasses the ongoing tasks of updating, monitoring, and maintaining the application to ensure its optimal performance, security, and relevance to users. This stage is crucial for sustaining the application's utility and user satisfaction over time.
           </FlowCard>
         </SimpleGrid>
       </Section>
@@ -178,16 +166,9 @@ const About = () => {
             </Flex>
           </Box>
           <Flex flexDir="column" gap="2" my="auto">
-            <BrandHeading>my story.</BrandHeading>
+            <BrandHeading>student life.</BrandHeading>
             <Text>
-              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-              ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-              Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet
-              voluptate voluptate dolor minim nulla est proident. Nostrud
-              officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex
-              occaecat reprehenderit commodo officia dolor Lorem duis laboris
-              cupidatat officia voluptate.
+              Currently, I'm a first year student at the University of British Columbia, and when I’m not building projects, I’m mostly hanging out with friends eating at sushi places in Vancouver or I’m drinking coffee at one of the many beaches this city has to offer. Before I came here though, I lived in Edmonton, AB where the majority of projects were made. I used to volunteer for the City of Edmonton Youth Council and worked on various initiatives regarding mental health awareness, sexual violence prevention, and committee wellbeing.
             </Text>
           </Flex>
         </SimpleGrid>

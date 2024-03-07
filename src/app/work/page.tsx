@@ -73,7 +73,7 @@ const Card = ({data}: {data: CaseStudy}) => {
               </Text>
             </Flex>
           </Flex>
-          <Text fontWeight="normal" h="16">
+          <Text fontWeight="normal" mb="8">
             {data.oneLineDescription}
           </Text>
         </Flex>
@@ -149,11 +149,7 @@ const Work = () => {
                   </SplitText>
                 </BrandHeading>
                 <Text maxW="xl">
-                  Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                  reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                  mollit ex esse exercitation amet. Nisi anim cupidatat
-                  excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem
-                  est aliquip amet voluptate.
+                  A collection of documented case studies of all the web applications and tools I've created and managed. 
                 </Text>
               </Flex>
             </FlexSection>

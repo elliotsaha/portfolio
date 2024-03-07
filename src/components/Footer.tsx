@@ -25,8 +25,8 @@ export const Footer = () => {
               platforms
             </Text>
             <Flex flexDir="column" gap="2" mt="2">
-              <Link>Github</Link>
-              <Link>LinkedIn</Link>
+              <Link href="https://github.com/elliotsaha">Github</Link>
+              <Link href="https://www.linkedin.com/in/elliotsaha/">LinkedIn</Link>
             </Flex>
           </Flex>
 
@@ -35,8 +35,8 @@ export const Footer = () => {
               connect
             </Text>
             <Flex flexDir="column" gap="2" mt="2">
-              <Link>CV</Link>
-              <Link>Contact</Link>
+              <Link href="/CV.pdf" download>CV</Link>
+              <Link href="/contact">Contact</Link>
             </Flex>
           </Flex>
         </Flex>

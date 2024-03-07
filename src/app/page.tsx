@@ -44,6 +44,7 @@ const Card = ({title, children, icon, color}: CardProps) => {
       borderRadius="3xl"
       flexDir="column"
       boxShadow="lg"
+      w="100%"
     >
       <Icon as={icon} color={color} fontSize="36" mb="4" />
       <Heading mb="2" size="lg" as="h3">
@@ -151,10 +152,7 @@ const Home = () => {
                 </BrandHeading>
               </Flex>
               <Text maxW="2xl" fontSize={{base: 'md', md: 'lg'}}>
-                Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-                reprehenderit enim labore culpa sint ad nisi Lorem pariatur
-                mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
-                officia.
+                I'm a full-stack developer and UI/UX designer specializing in creating web applications with React and NextJS.
               </Text>
               <Box mt="2">
                 <ButtonLink href="/contact">get in touch</ButtonLink>
@@ -164,36 +162,47 @@ const Home = () => {
         </main>
       </Section>
 
-      <FlexSection
+      <Grid
         position="relative"
         gap="8"
-        flexDir={{base: 'column', lg: 'row'}}
+        gridTemplateAreas={{base: `"gc1"
+                                   "gc2"
+                                   "gc3"`,
+                            md: `"gc1 gc2"
+                                "gc3 gc3"`,
+                            lg: `"gc1 gc2 gc3"`}}
+        gridTemplateColumns={{base: "1fr", md: "1fr 1fr", lg: "1fr 1fr 1fr"}}
+        gridTemplateRows={{base: "1fr 1fr 1fr", md: "1fr 1fr", lg: "1fr"}}
       >
+        <GridItem area="gc1">
+
         <Card
-          title="Lorem ipsum dolor sit amet."
+          title="Consistancy"
           icon={FiBox}
           color="brand.blue.solid"
         >
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
+            Allowing users to predict and navigate interfaces with ease is paramount to providing a good user experience.
         </Card>
+        </GridItem>
+        <GridItem area="gc2">
         <Card
-          title="Lorem ipsum dolor sit amet."
+          title="Accessibility"
           icon={FiTable}
           color="brand.green.solid"
         >
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
+            Fostering usability and functionality over aesthetics is the most crucial part of designing and building applications.
         </Card>
+        </GridItem>
+        <GridItem area="gc3">
         <Card
-          title="Lorem ipsum dolor sit amet."
+          title="Management"
           icon={FiLayers}
           color="brand.yellow.solid"
         >
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
+            Effective management and consistant collaboration contributes to a project's orderly development and scalability.
         </Card>
-      </FlexSection>
+        </GridItem>
+      </Grid>
 
       <FlexSection mt="32" flexDir="column" position="relative">
         <Blob
@@ -424,14 +433,7 @@ const Home = () => {
           <Flex flexDir="column" gap="2" my="auto">
             <BrandHeading>about me.</BrandHeading>
             <Text>
-              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-              ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-              Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet
-              voluptate voluptate dolor minim nulla est proident. Nostrud
-              officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex
-              occaecat reprehenderit commodo officia dolor Lorem duis laboris
-              cupidatat officia voluptate.
+              Hi, I'm Elliot—a seasoned web developer at the forefront of deploying innovative solutions for the digital age. I've been working with building React web applications since 2020 and have progressed my skills thoroughly allowing me to develop my own philosophies of how projects should be structured, built, and deployed. Each project I build has been an opportunity to refine my skills and push the boundries of what I believe I can do.
             </Text>
 
             <Box mt="4">
