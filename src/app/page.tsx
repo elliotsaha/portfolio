@@ -408,7 +408,7 @@ const Home = () => {
               <BrandHeading>about me.</BrandHeading>
               <Text>
                 Hi, I&apos;m Elliot—a seasoned web developer at the forefront of
-                deploying innovative solutions for the digital age. I&apis;ve been
+                deploying innovative solutions for the digital age. I&apos;ve been
                 working with building React web applications since 2020 and have
                 progressed my skills thoroughly allowing me to develop my own
                 philosophies of how projects should be structured, built, and
