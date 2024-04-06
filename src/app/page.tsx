@@ -413,7 +413,7 @@ const Home = () => {
                 progressed my skills thoroughly allowing me to develop my own
                 philosophies of how projects should be structured, built, and
                 deployed. Each project I build has been an opportunity to refine
-                my skills and push the boundries of what I believe I can do.
+                my skills and push the boundaries of what I believe I can do.
               </Text>
 
               <Box mt="4">
