@@ -169,7 +169,7 @@ const Home = () => {
           flexDirection="column"
         >
           <GridItem area="gc1">
-            <Card title="Consistancy" icon={FiBox} color="brand.blue.solid">
+            <Card title="Consistency" icon={FiBox} color="brand.blue.solid">
               Allowing users to predict and navigate interfaces with ease is
               paramount to providing a good user experience.
             </Card>
