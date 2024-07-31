@@ -1,6 +1,6 @@
-'use client';
-import {Footer as CFooter} from '@/components/factory';
-import {Container, Text, Link, Flex} from '@chakra-ui/react';
+"use client";
+import { Footer as CFooter } from "@/components/factory";
+import { Container, Text, Link, Flex } from "@chakra-ui/react";
 
 export const Footer = () => {
   const date = new Date();
@@ -10,8 +10,8 @@ export const Footer = () => {
     <CFooter pb="12" position="relative">
       <Container maxW="container.xl">
         <Flex
-          gap={{base: '8', sm: '12', md: '16'}}
-          flexDir={{base: 'column', sm: 'row'}}
+          gap={{ base: "8", sm: "12", md: "16" }}
+          flexDir={{ base: "column", sm: "row" }}
         >
           <Flex flexDir="column">
             <Text variant="active" fontSize="lg">

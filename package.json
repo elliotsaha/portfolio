@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 3000",
     "email": "email dev --port 4000 --dir src/emails",
     "cf-type-gen": "dotenv -- bash -c 'cf-content-types-generator -s $NEXT_CONTENTFUL_SPACE_ID -t $NEXT_CONTENTFUL_CMA_TOKEN -X -o ./src/types/contentful'",
     "fix": "next lint"
