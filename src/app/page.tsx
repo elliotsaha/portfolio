@@ -46,7 +46,7 @@ const Card = ({ title, children, icon, color }: CardProps) => {
       boxShadow="lg"
       w="100%"
     >
-      <Icon as={icon} color={color} fontSize="36" mb="4" />
+      {icon && (<Icon as={icon} color={color} fontSize="36" mb="4" />)}
       <Heading mb="2" size="lg" as="h3">
         {title}
       </Heading>
@@ -60,7 +60,7 @@ const getFeatured = async () => {
   const featured = await axios.get(
     `${process.env.NEXT_PUBLIC_HOSTNAME}/api/work/featured`
   );
-  return featured.data;
+  return featured?.data;
 };
 
 const Home = () => {
@@ -233,8 +233,8 @@ const Home = () => {
                   overflow="hidden"
                 >
                   <Flex flexDir="column" p={{ base: '8', lg: '12', xl: '16' }}>
-                    <Image src={data.showcase.icon} h="16" mb="4" mr="auto" alt={data.showcase.title} />
-                    <Heading size="xl">{data.showcase.title}</Heading>
+                    <Image src={data?.showcase?.icon} h="16" mb="4" mr="auto" alt={data?.showcase?.title} />
+                    <Heading size="xl">{data?.showcase?.title}</Heading>
                     <Text
                       color="brand.blue.solid"
                       transition="all 0.25s ease-in-out"
@@ -245,14 +245,14 @@ const Home = () => {
                       letterSpacing="0.25rem"
                       mb="2"
                     >
-                      {data.showcase.subtitle}
+                      {data?.showcase?.subtitle}
                     </Text>
                     <Text fontWeight="normal">
-                      {data.showcase.shortDescription}
+                      {data?.showcase?.shortDescription}
                     </Text>
                   </Flex>
                   <Image
-                    src={data.showcase.cover}
+                    src={data?.showcase?.cover}
                     objectFit="cover"
                     mt="auto"
                     borderTopLeftRadius="3xl"
@@ -260,7 +260,7 @@ const Home = () => {
                     ml={{ base: '1.8rem', sm: '4rem' }}
                     transition="all 0.25s ease-in-out"
                     boxShadow="lg"
-                    alt={data.showcase.title}
+                    alt={data?.showcase?.title}
                   />
                 </SimpleGrid>
               )}
@@ -284,13 +284,13 @@ const Home = () => {
                 >
                   <Flex flexDir="column" p={{ base: '8', xl: '16' }}>
                     <Image
-                      src={data.featuredLeft.icon}
+                      src={data?.featuredLeft?.icon}
                       h="14"
                       mb="4"
                       mr="auto"
-                      alt={data.featuredLeft.title}
+                      alt={data?.featuredLeft?.title}
                     />
-                    <Heading size="xl">{data.featuredLeft.title}</Heading>
+                    <Heading size="xl">{data?.featuredLeft?.title}</Heading>
                     <Text
                       color="brand.purple.solid"
                       transition="all 0.25s ease-in-out"
@@ -301,14 +301,14 @@ const Home = () => {
                       letterSpacing="0.25rem"
                       mb="2"
                     >
-                      {data.featuredLeft.subtitle}
+                      {data?.featuredLeft?.subtitle}
                     </Text>
                     <Text fontWeight="normal">
-                      {data.featuredLeft.shortDescription}
+                      {data?.featuredLeft?.shortDescription}
                     </Text>
                   </Flex>
                   <Image
-                    src={data.featuredLeft.cover}
+                    src={data?.featuredLeft?.cover}
                     objectFit="cover"
                     mt="auto"
                     borderTopLeftRadius="3xl"
@@ -316,7 +316,7 @@ const Home = () => {
                     ml={{ base: '1.8rem', sm: '4rem' }}
                     transition="all 0.25s ease-in-out"
                     boxShadow="lg"
-                    alt={data.featuredLeft.title}
+                    alt={data?.featuredLeft?.title}
                   />
                 </SimpleGrid>
               )}
@@ -340,13 +340,13 @@ const Home = () => {
                 >
                   <Flex flexDir="column" p={{ base: '8', xl: '16' }}>
                     <Image
-                      src={data.featuredRight.icon}
+                      src={data?.featuredRight?.icon}
                       h="16"
                       mb="4"
                       mr="auto"
-                      alt={data.featuredRight.title}
+                      alt={data?.featuredRight?.title}
                     />
-                    <Heading size="xl">{data.featuredRight.title}</Heading>
+                    <Heading size="xl">{data?.featuredRight?.title}</Heading>
                     <Text
                       color="brand.green.solid"
                       transition="all 0.25s ease-in-out"
@@ -357,14 +357,14 @@ const Home = () => {
                       letterSpacing="0.25rem"
                       mb="2"
                     >
-                      {data.featuredRight.subtitle}
+                      {data?.featuredRight?.subtitle}
                     </Text>
                     <Text fontWeight="normal">
-                      {data.featuredRight.shortDescription}
+                      {data?.featuredRight?.shortDescription}
                     </Text>
                   </Flex>
                   <Image
-                    src={data.featuredRight.cover}
+                    src={data?.featuredRight?.cover}
                     objectFit="cover"
                     mt="auto"
                     borderTopLeftRadius="3xl"
@@ -372,7 +372,7 @@ const Home = () => {
                     ml={{ base: '1.8rem', sm: '4rem' }}
                     transition="all 0.25s ease-in-out"
                     boxShadow="lg"
-                    alt={data.featuredRight.title}
+                    alt={data?.featuredRight?.title}
                   />
                 </SimpleGrid>
               )}
