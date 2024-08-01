@@ -7,6 +7,7 @@ import {
   Text,
   SimpleGrid,
   Image,
+  Img,
   Heading,
   Box,
   Icon,
@@ -98,7 +99,7 @@ const About = () => {
                       companies to connect with each other.
                     </Text>
                   </Flex>
-                  <Image
+                  <Img
                     src="/about/headshot-white.png"
                     borderRadius="3xl"
                     h={{ base: 'sm', sm: 'md', md: 'lg' }}
