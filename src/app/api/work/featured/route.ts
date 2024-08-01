@@ -1,7 +1,7 @@
-import {contentfulClient} from '@/lib';
-import {ServerResponse} from '@/helpers';
-import {TypeCaseStudiesSkeleton} from '@/types/contentful';
-import {Asset} from 'contentful';
+import { contentfulClient } from '@/lib';
+import { ServerResponse } from '@/helpers';
+import { TypeCaseStudiesSkeleton } from '@/types/contentful';
+import { Asset } from 'contentful';
 
 export const GET = async () => {
   try {
@@ -32,10 +32,10 @@ export const GET = async () => {
       study => study.slug === 'bridges'
     )[0];
     const featuredRight = caseStudies.filter(
-      study => study.slug === 'ubc-tennis-circle'
+      study => study.slug === 'deca-ui'
     )[0];
 
-    return ServerResponse.success({showcase, featuredLeft, featuredRight});
+    return ServerResponse.success({ showcase, featuredLeft, featuredRight });
   } catch (e) {
     return ServerResponse.serverError();
   }
